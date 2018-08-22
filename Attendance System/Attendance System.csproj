@@ -175,6 +175,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\People1Controller.cs" />
+    <Compile Include="Controllers\People2Controller.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -380,6 +381,11 @@
     <Content Include="Views\People1\Edit.cshtml" />
     <Content Include="Views\People1\Index.cshtml" />
     <Content Include="Views\Login\LoadEmployee.cshtml" />
+    <Content Include="Views\People2\Create.cshtml" />
+    <Content Include="Views\People2\Delete.cshtml" />
+    <Content Include="Views\People2\Details.cshtml" />
+    <Content Include="Views\People2\Edit.cshtml" />
+    <Content Include="Views\People2\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
