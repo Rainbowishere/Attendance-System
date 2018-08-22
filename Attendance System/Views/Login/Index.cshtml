@@ -1,0 +1,303 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/css/all.css" rel="stylesheet" />
+    <link href="~/Content/lumen.bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/Icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/Icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/Icon/favicon-16x16.png">
+    <link rel="manifest" href="~/Content/Icon/site.webmanifest">
+    <link rel="mask-icon" href="~/Content/Icon/[]safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    @*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">*@
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/html5-qrcode.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/css/all.css" rel="stylesheet" />
+    <script src="~/Scripts/js/all.js"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <title>Index</title>
+</head>
+<body style="background-color:#cd1e2b">
+    <style>
+        .vertical-center {
+            /*min-height: 100%; /* Fallback for browsers do NOT support vh unit */
+           /* min-height: 100%;*/ /* These two lines are counted as one :-)       */
+            display: flex;
+            position: absolute;
+            top:0; 
+            bottom:0;
+            left:0;
+            right:0;
+
+            align-items: center;
+        }
+
+        body {
+            background-color: #cd1e2b !important;
+        }
+
+        .numpad {
+            height: 60px;
+            margin: 0;
+            padding: 0;
+            font-size: larger;
+            /*background-color: #34495e;*/
+            /*min-width: 40px;*/
+            /*max-width: 30px*/
+            /*color: #000000;*/
+        }
+
+        .col-xs-4 {
+            margin: 0px;
+            padding: 2px;
+        }
+
+        * {
+            font-family: BoonHome;
+        }
+
+        select.btn-mini {
+            height: auto;
+            line-height: 14px;
+        }
+
+        /* this is optional (see below) */
+        select.btn {
+            -webkit-appearance: button;
+            -moz-appearance: button;
+            padding-right: 16px;
+        }
+
+        select.btn-mini + .caret {
+            margin-left: -20px;
+            margin-top: 9px;
+        }
+    </style>
+    <div class="vertical-center" style="background-color:#1abc9c !important">
+        <div class="container">
+
+            <div class="panel panel-default" style="background-color: #eff3f6">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="well" style="position: relative;display: inline-block;">
+                                        <canvas width="320" height="240" id="webcodecam-canvas"></canvas>
+                                        <div class="scanner-laser laser-rightBottom" style="opacity: 0.5;"></div>
+                                        <div class="scanner-laser laser-rightTop" style="opacity: 0.5;"></div>
+                                        <div class="scanner-laser laser-leftBottom" style="opacity: 0.5;"></div>
+                                        <div class="scanner-laser laser-leftTop" style="opacity: 0.5;"></div>
+
+                                    </div>
+                                    <div class="">
+                                        <div class="col-xs-12 text-center">
+                                            <div class="form-group">
+                                                <label class="control-label">ເລືອກກ້ອງ:</label>
+                                                <select class="form-control" id="camera-select"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="thumbnail" id="result">
+                                        <div class="text-center" style="overflow: hidden;">
+                                            <img style="margin-top:13px" width="360" height="240" id="scanned-img" src="">
+                                        </div>
+
+                                        <div class="caption" style="display:none">
+                                            <h3>Scanned result</h3>
+                                            <p id="scanned-QR"></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="well" style="width: 100%; display: none">
+                                        <label id="zoom-value" width="100">Zoom: 2</label>
+                                        <input id="zoom" onchange="Page.changeZoom();" type="range" min="10" max="30" value="20">
+                                        <label id="brightness-value" width="100">Brightness: 0</label>
+                                        <input id="brightness" onchange="Page.changeBrightness();" type="range" min="0" max="128" value="0">
+                                        <label id="contrast-value" width="100">Contrast: 0</label>
+                                        <input id="contrast" onchange="Page.changeContrast();" type="range" min="0" max="64" value="0">
+                                        <label id="threshold-value" width="100">Threshold: 0</label>
+                                        <input id="threshold" onchange="Page.changeThreshold();" type="range" min="0" max="512" value="0">
+                                        <label id="sharpness-value" width="100">Sharpness: off</label>
+                                        <input id="sharpness" onchange="Page.changeSharpness();" type="checkbox">
+                                        <label id="grayscale-value" width="100">grayscale: off</label>
+                                        <input id="grayscale" onchange="Page.changeGrayscale();" type="checkbox">
+                                        <br>
+                                        <label id="flipVertical-value" width="100">Flip Vertical: off</label>
+                                        <input id="flipVertical" onchange="Page.changeVertical();" type="checkbox">
+                                        <label id="flipHorizontal-value" width="100">Flip Horizontal: off</label>
+                                        <input id="flipHorizontal" onchange="Page.changeHorizontal();" type="checkbox">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="navbar-form navbar-right">
+
+                                        <div class="form-group" style="display:none">
+                                            <input id="image-url" type="text" class="form-control" placeholder="Image url">
+                                            <button title="Decode Image" class="btn btn-default btn-sm" id="decode-img" type="button" data-toggle="tooltip"><span class="glyphicon glyphicon-upload"></span></button>
+                                            <button title="Image shoot" class="btn btn-info btn-sm disabled" id="grab-img" type="button" data-toggle="tooltip"><span class="glyphicon glyphicon-picture"></span></button>
+                                            <button title="Play" class="btn btn-success btn-sm" id="play" type="button" data-toggle="tooltip"><span class="glyphicon glyphicon-play"></span></button>
+                                            <button title="Pause" class="btn btn-warning btn-sm" id="pause" type="button" data-toggle="tooltip"><span class="glyphicon glyphicon-pause"></span></button>
+                                            <button title="Stop streams" class="btn btn-danger btn-sm" id="stop" type="button" data-toggle="tooltip"><span class="glyphicon glyphicon-stop"></span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="panel panel-primary">
+                                <div class="panel-body">
+                                    <input style="margin: 0;" type="tel" class="form-control input-lg" placeholder="ກະລຸນາໃສ່ເບີໂທຂອງທ່ານ" id="idStaff" />
+                                    <div class="" style="padding:8px 14px;">
+                                        <div class="row text-center">
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-info btn-block numpad">1</button>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-info btn-block numpad"> 2 </button>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-info btn-block numpad">3</button>
+                                            </div>
+                                        </div>
+                                        <div class="row text-center">
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-info btn-block numpad">4</button>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-info btn-block numpad">5</button>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-info btn-block numpad">6</button>
+                                            </div>
+                                        </div>
+                                        <div class="row text-center">
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-info btn-block numpad">7</button>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-info btn-block numpad">8</button>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-info btn-block numpad">9</button>
+                                            </div>
+                                        </div>
+                                        <div class="row text-center">
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-default btn-block numpad">
+                                                    <i class="glyphicon glyphicon-remove"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-info btn-block numpad">0</button>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-default btn-block numpad">
+                                                    <i class="fas fa-backspace">
+                                                    </i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <button class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal" id="loginButton" onclick="LoadEmployee();">ເຂົ້າລະບົບ</button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog modal-sm" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title" id="myModalLabel" style="font-weight:bold">ການລົງຊື່ເຂົ້າໃຊ້</h4>
+                                                        </div>
+                                                        <div class="modal-body" id="LoadDataEmployee">
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
+                                                            <button type="button" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="~/Scripts/webcodecamjs/jquery.js"></script>
+    <script type="text/javascript" src="~/Scripts/webcodecamjs/qrcodelib.js"></script>
+    <script type="text/javascript" src="~/Scripts/webcodecamjs/webcodecamjs.js"></script>
+    <script type="text/javascript" src="~/Scripts/webcodecamjs/main.js"></script>
+
+    <script>
+
+        $(function () {
+            $("#play").click();
+
+
+
+        });
+
+        function LoadEmployee() {
+            var empId = $("#idStaff").val();
+            $("#LoadDataEmployee").empty();
+
+            $.get("@Url.Action("LoadEmployee", "Login")" + "/" + empId, "", function (data) {
+
+                $("#LoadDataEmployee").html(data);
+            });
+
+        }
+
+        var divimg = document.getElementById("scanned-img"),
+    prevSrc;
+        setInterval(function () {
+            if (divimg.src != prevSrc) {
+                prevSrc = divimg.src;
+                if (prevSrc != null) {
+
+                onSrcChange();
+                }
+            }
+        }, 1000); // 1000ms = 1s
+
+        function onSrcChange() {
+            var empId = $("#idStaff").val();
+            if (empId != "") {
+                $("#loginButton").click();
+            }
+            
+        }
+
+
+    </script>
+</body>
+</html>

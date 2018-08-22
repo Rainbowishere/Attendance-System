@@ -1,0 +1,63 @@
+﻿@model Attendance_System.Models.Person
+<div class="row">
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label class="control-label">@Model.FullName</label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label class="control-label" style="font-weight:bold">ເບີໂທ:</label>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label class="control-label">@Model.PhoneNumberID</label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label class="control-label" style="font-weight:bold">ລະຫັດພະນັກງານ:</label>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label class="control-label">@Model.EmployeeID</label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label class="control-label" style="font-weight:bold">ຈຸດປະສົງ:</label>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <select class="form-control" style="height:30px ; padding-top:3px">
+            <option value="">ຝຶກງານ</option>
+            <option value="">ສົ່ງເອກະສານ</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <div class="form-group">
+            <label class="control-label" style="font-weight:bold">ອຸປະກອນທີ່ນຳເຂົ້າມາ:</label>
+        </div>
+    </div>
+    <div class="col-xs-6">
+        <select class="form-control" style="height:30px ; padding-top:3px">
+            <option value="">Laptop</option>
+            <option value="">ເອກະສານ</option>
+        </select>
+    </div>
+</div>
