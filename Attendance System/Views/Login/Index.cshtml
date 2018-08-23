@@ -19,7 +19,6 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
-    @*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">*@
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
@@ -33,23 +32,18 @@
     @Scripts.Render("~/bundles/modernizr")
     <title>Index</title>
 </head>
-<body style="background-color:#cd1e2b">
+<body style="background-color:black">
     <style>
         .vertical-center {
             /*min-height: 100%; /* Fallback for browsers do NOT support vh unit */
-           /* min-height: 100%;*/ /* These two lines are counted as one :-)       */
+            /* min-height: 100%;*/ /* These two lines are counted as one :-)       */
             display: flex;
             position: absolute;
-            top:0; 
-            bottom:0;
-            left:0;
-            right:0;
-
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
             align-items: center;
-        }
-
-        body {
-            background-color: #cd1e2b !important;
         }
 
         .numpad {
@@ -107,9 +101,9 @@
             text-align: left;
             vertical-align: middle;
         }
-
     </style>
-    <div class="vertical-center" style="background-color:#1abc9c !important">
+
+    <div class="vertical-center" style="background-color: transparent !important;">
         <div class="container">
 
             <div class="panel panel-default" style="background-color: #eff3f6">
@@ -189,59 +183,59 @@
                         <div class="col-xs-3">
                             <div class="panel panel-primary">
                                 <div class="panel-body">
-                                    <input style="margin: 0;" type="tel" class="form-control input-lg" placeholder="ກະລຸນາໃສ່ເບີໂທຂອງທ່ານ" id="idStaff" />
+                                    <input style="margin: 0;" type="tel" class="form-control input-lg" placeholder="ກະລຸນາໃສ່ເບີໂທຂອງທ່ານ" id="idStaff" onchange="ValidateTextBox()"/>
                                     <div class="" style="padding:8px 14px;">
                                         <div class="row text-center">
                                             <div class="col-xs-4">
-                                                <button class="btn btn-info btn-block numpad">1</button>
+                                                <button onclick="insertAtCaret('idStaff', '1'); return false;" class="btn btn-info btn-block numpad">1</button>
                                             </div>
                                             <div class="col-xs-4">
-                                                <button class="btn btn-info btn-block numpad"> 2 </button>
+                                                <button onclick="insertAtCaret('idStaff', '2'); return false;" class="btn btn-info btn-block numpad"> 2 </button>
                                             </div>
                                             <div class="col-xs-4">
-                                                <button class="btn btn-info btn-block numpad">3</button>
-                                            </div>
-                                        </div>
-                                        <div class="row text-center">
-                                            <div class="col-xs-4">
-                                                <button class="btn btn-info btn-block numpad">4</button>
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <button class="btn btn-info btn-block numpad">5</button>
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <button class="btn btn-info btn-block numpad">6</button>
+                                                <button onclick="insertAtCaret('idStaff', '3'); return false;" class="btn btn-info btn-block numpad">3</button>
                                             </div>
                                         </div>
                                         <div class="row text-center">
                                             <div class="col-xs-4">
-                                                <button class="btn btn-info btn-block numpad">7</button>
+                                                <button onclick="insertAtCaret('idStaff', '4'); return false;" class="btn btn-info btn-block numpad">4</button>
                                             </div>
                                             <div class="col-xs-4">
-                                                <button class="btn btn-info btn-block numpad">8</button>
+                                                <button onclick="insertAtCaret('idStaff', '5'); return false;" class="btn btn-info btn-block numpad">5</button>
                                             </div>
                                             <div class="col-xs-4">
-                                                <button class="btn btn-info btn-block numpad">9</button>
+                                                <button onclick="insertAtCaret('idStaff', '6'); return false;" class="btn btn-info btn-block numpad">6</button>
                                             </div>
                                         </div>
                                         <div class="row text-center">
                                             <div class="col-xs-4">
-                                                <button class="btn btn-default btn-block numpad">
+                                                <button onclick="insertAtCaret('idStaff', '7'); return false;" class="btn btn-info btn-block numpad">7</button>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button onclick="insertAtCaret('idStaff', '8'); return false;" class="btn btn-info btn-block numpad">8</button>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <button onclick="insertAtCaret('idStaff', '9'); return false;" class="btn btn-info btn-block numpad">9</button>
+                                            </div>
+                                        </div>
+                                        <div class="row text-center">
+                                            <div class="col-xs-4">
+                                                <button onclick="ClearTextBox()" class="btn btn-default btn-block numpad">
                                                     <i class="glyphicon glyphicon-remove"></i>
                                                 </button>
                                             </div>
                                             <div class="col-xs-4">
-                                                <button class="btn btn-info btn-block numpad">0</button>
+                                                <button onclick="insertAtCaret('idStaff', '0'); return false;" class="btn btn-info btn-block numpad">0</button>
                                             </div>
                                             <div class="col-xs-4">
-                                                <button class="btn btn-default btn-block numpad">
+                                                <button id="backspace" class="btn btn-default btn-block numpad">
                                                     <i class="fas fa-backspace">
                                                     </i>
                                                 </button>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <button class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal" id="loginButton" onclick="LoadEmployee();">ເຂົ້າລະບົບ</button>
+                                            <button class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal" id="loginButton" onclick="LoadEmployee();" disabled>ເຂົ້າລະບົບ</button>
 
                                             <!-- Modal -->
                                             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -256,7 +250,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
-                                                            <button type="button" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
+                                                            <button type="submit" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -278,16 +272,37 @@
     <script type="text/javascript" src="~/Scripts/webcodecamjs/main.js"></script>
 
     <script>
+        // Clears the text box
 
+        function ClearTextBox() {
+            document.getElementById('idStaff').value = "";
+        }
+
+
+        // Press the check-in button when the user presses the Enter key
+        $(document).ready(function () {
+            $('#idStaff').keypress(function (e) {
+                if (e.keyCode === 13)
+                    $('#loginButton').click();
+            });
+        });
+
+        // Backspace button's function
+        $("#backspace").click(function () {
+            var el = $("#idStaff");
+            var the_value = el.val();
+            the_value = the_value.substring(0, the_value.length - 1);
+            el.val(the_value);
+        });
+
+        // Starts the webcam when the web has loaded
         $(function () {
             $("#play").click();
-
-
-
         });
 
         function LoadEmployee() {
             var empId = $("#idStaff").val();
+
             $("#LoadDataEmployee").empty();
 
             $.get("@Url.Action("LoadEmployee", "Login")" + "/" + empId, "", function (data) {
@@ -300,9 +315,9 @@
         var divimg = document.getElementById("scanned-img"),
     prevSrc;
         setInterval(function () {
-            if (divimg.src != prevSrc) {
+            if (divimg.src !== prevSrc) {
                 prevSrc = divimg.src;
-                if (prevSrc != null) {
+                if (prevSrc !== null) {
 
                 onSrcChange();
                 }
@@ -311,12 +326,62 @@
 
         function onSrcChange() {
             var empId = $("#idStaff").val();
-            if (empId != "") {
+            if (empId !== "") {
                 $("#loginButton").click();
             }
-            
+
         }
 
+
+        // Function for inserting values into the text box from the button
+
+        function insertAtCaret(areaId, text) {
+            var txtarea = document.getElementById(areaId);
+            if (!txtarea) {
+                return;
+            }
+
+            var scrollPos = txtarea.scrollTop;
+            var strPos = 0;
+            var br = ((txtarea.selectionStart || txtarea.selectionStart === '0') ?
+                "ff" : (document.selection ? "ie" : false));
+            if (br === "ie") {
+                txtarea.focus();
+                var range = document.selection.createRange();
+                range.moveStart('character', -txtarea.value.length);
+                strPos = range.text.length;
+            } else if (br === "ff") {
+                strPos = txtarea.selectionStart;
+            }
+
+            var front = (txtarea.value).substring(0, strPos);
+            var back = (txtarea.value).substring(strPos, txtarea.value.length);
+            txtarea.value = front + text + back;
+            strPos = strPos + text.length;
+            if (br === "ie") {
+                txtarea.focus();
+                var ieRange = document.selection.createRange();
+                ieRange.moveStart('character', -txtarea.value.length);
+                ieRange.moveStart('character', strPos);
+                ieRange.moveEnd('character', 0);
+                ieRange.select();
+            } else if (br === "ff") {
+                txtarea.selectionStart = strPos;
+                txtarea.selectionEnd = strPos;
+                txtarea.focus();
+            }
+
+            txtarea.scrollTop = scrollPos;
+        }
+
+        // Disble the check-in button when the text box is empty
+        function ValidateTextBox() {
+            if (document.getElementById("idStaff").value === "") {
+                document.getElementById('loginButton').disabled = true;
+            } else {
+                document.getElementById('loginButton').disabled = false;
+            }
+        }
 
     </script>
 </body>
