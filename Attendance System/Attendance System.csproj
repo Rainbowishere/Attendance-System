@@ -233,6 +233,11 @@
     <Content Include="Content\Icon\favicon.ico" />
     <Content Include="Content\Icon\mstile-150x150.png" />
     <Content Include="Content\Icon\safari-pinned-tab.svg" />
+    <Content Include="Content\JParticles\css\style.css" />
+    <Content Include="Content\JParticles\js\event.js" />
+    <Content Include="Content\JParticles\js\jparticles.js" />
+    <Content Include="Content\JParticles\js\particle.js" />
+    <Content Include="Content\JParticles\js\require.js" />
     <Content Include="Content\style.css" />
     <Content Include="Content\loung.png" />
     <Content Include="Content\lumen.bootstrap.min.css" />
