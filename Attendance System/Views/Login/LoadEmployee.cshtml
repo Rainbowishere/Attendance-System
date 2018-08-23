@@ -26,15 +26,31 @@
 <div class="row">
     <div class="col-xs-6">
         <div class="form-group">
-            <label class="control-label" style="font-weight:bold">ລະຫັດພະນັກງານ:</label>
+            <label class="control-label" style="font-weight:bold">ມາຈາກ:</label>
         </div>
     </div>
     <div class="col-xs-6">
         <div class="form-group">
-            <label class="control-label">@Model.EmployeeID</label>
+            <label class="control-label">@Model.Source</label>
         </div>
     </div>
 </div>
+@if (!string.IsNullOrEmpty(Model.EmployeeID))
+{
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ລະຫັດພະນັກງານ:</label>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label">@Model.EmployeeID</label>
+            </div>
+        </div>
+    </div>
+}
+
 <div class="row">
     <div class="col-xs-6">
         <div class="form-group">
@@ -62,18 +78,8 @@
         <select class="form-control" style="height:30px ; padding-top:3px">
             <option value="">Laptop</option>
             <option value="">ເອກະສານ</option>
+            <option value="">PC</option>
         </select>
     </div>
 </div>
-<div class="row">
-    <div class="col-xs-6">
-        <div class="form-group">
-            <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
-        </div>
-    </div>
-    <div class="col-xs-6">
-        <div class="form-group">
-            <label class="control-label">@Model.</label>
-        </div>
-    </div>
-</div>
+

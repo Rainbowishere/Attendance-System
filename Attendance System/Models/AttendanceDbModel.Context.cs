@@ -25,6 +25,7 @@ namespace Attendance_System.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CheckinCheckout> CheckinCheckouts { get; set; }
         public virtual DbSet<Person> People { get; set; }
     }
 }
