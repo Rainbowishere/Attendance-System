@@ -18,6 +18,5 @@ namespace Attendance_System.Models
         public string FullName { get; set; }
         public string Source { get; set; }
         public string EmployeeID { get; set; }
-        public string Device { get; set; }
     }
 }

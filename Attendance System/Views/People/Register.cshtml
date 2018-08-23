@@ -1,4 +1,4 @@
-﻿
+﻿@model Attendance_System.Models.Person
 @{
     ViewBag.Title = "Register";
 }
@@ -46,7 +46,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label">ເບີໂທ:</label>
-                                <input type="tel" class="form-control" />
+                                <input value="@Model.PhoneNumberID" type="tel" class="form-control" />
                             </div>
                         </div>
                         <div class="col-md-4">

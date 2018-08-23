@@ -20,8 +20,19 @@ namespace Attendance_System.Controllers
 
         public ActionResult LoadEmployee(string id)
         {
+            var existingUser = db.People.Find(id);
+
+            if (existingUser == null)
+            {
+                return PartialView("Register");
+            }
+            else
+            {
+                return PartialView(existingUser);
+            }
+
             //var person = db.People.Find(id);
-            return PartialView(db.People.Find(id));
+            
         }
     }
 }

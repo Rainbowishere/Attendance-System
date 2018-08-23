@@ -354,6 +354,7 @@
     <Content Include="Views\People1\Details.cshtml" />
     <Content Include="Views\People1\Edit.cshtml" />
     <Content Include="Views\People1\Index.cshtml" />
+    <Content Include="Views\Login\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
