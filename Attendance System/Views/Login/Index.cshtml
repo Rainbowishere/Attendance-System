@@ -141,7 +141,7 @@
     <div class="vertical-center" style="background-color: transparent !important;">
         <div class="container">
 
-            <div class="panel panel-default" style="background-color: #eff3f6">
+            <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-xs-9">
@@ -218,11 +218,11 @@
                         <div class="col-xs-3">
                             <div class="panel panel-primary">
                                 <div class="panel-body">
-                                    <input style="margin: 0;" type="tel" class="form-control input-lg" placeholder="ກະລຸນາໃສ່ເບີໂທຂອງທ່ານ" id="idStaff" onchange="ValidateTextBox()" />
+                                    <input style="margin: 0;" type="tel" class="form-control input-lg text-right" placeholder="ກະລຸນາໃສ່ເບີໂທຂອງທ່ານ" id="idStaff"" />
                                     <div class="" style="padding:8px 14px;">
                                         <div class="row text-center">
                                             <div class="col-xs-4">
-                                                <button onclick="insertAtCaret('idStaff', '1'); return false;" class="btn btn-info btn-block numpad">1</button>
+                                                <button onclick="insertAtCaret('idStaff', '1'); return false; textChangedHandler()" class="btn btn-info btn-block numpad">1</button>
                                             </div>
                                             <div class="col-xs-4">
                                                 <button onclick="insertAtCaret('idStaff', '2'); return false;" class="btn btn-info btn-block numpad"> 2 </button>
@@ -255,7 +255,7 @@
                                         </div>
                                         <div class="row text-center">
                                             <div class="col-xs-4">
-                                                <button onclick="ClearTextBox()" class="btn btn-default btn-block numpad">
+                                                <button onclick="ClearTextBox();" onmouseup="ValidateTextBox()" class="btn btn-default btn-block numpad">
                                                     <i class="glyphicon glyphicon-remove"></i>
                                                 </button>
                                             </div>
@@ -314,6 +314,7 @@
 
         function ClearTextBox() {
             document.getElementById('idStaff').value = "";
+            document.getElementById("idStaff").focus();
         }
 
 
@@ -331,6 +332,9 @@
             var the_value = el.val();
             the_value = the_value.substring(0, the_value.length - 1);
             el.val(the_value);
+            document.getElementById("idStaff").focus();
+            
+
         });
 
         // Starts the webcam when the web has loaded
@@ -410,6 +414,7 @@
             }
 
             txtarea.scrollTop = scrollPos;
+            document.getElementById("idStaff").focus();
         }
 
         // Disble the check-in button when the text box is empty
@@ -421,16 +426,19 @@
             }
         }
 
+
         // JParticles
         bind('#instance', function () {
             return new JParticles.particle('#instance .demo', {
-                color: '#5cbdaa',
+                color: '#cd1e2b',
                 range: 5000,
                 proximity: 80,
                 parallax: true,
                 maxSpeed: 0.3
             });
         });
+
+        
 
     </script>
 </body>
