@@ -13,10 +13,10 @@ namespace Attendance_System.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AttendanceDatabaseContext : DbContext
+    public partial class AttendanceDbContext : DbContext
     {
-        public AttendanceDatabaseContext()
-            : base("name=AttendanceDatabaseContext")
+        public AttendanceDbContext()
+            : base("name=AttendanceDbContext")
         {
         }
     

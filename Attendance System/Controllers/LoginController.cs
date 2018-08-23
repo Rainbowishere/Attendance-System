@@ -9,7 +9,7 @@ namespace Attendance_System.Controllers
 {
     public class LoginController : Controller
     {
-        private LTCAttendanceDbContext db = new LTCAttendanceDbContext();
+        private AttendanceDbContext db = new AttendanceDbContext();
 
         // GET: Login
         public ActionResult Index()
