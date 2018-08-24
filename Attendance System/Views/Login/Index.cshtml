@@ -222,7 +222,7 @@
                                     <div class="" style="padding:8px 14px;">
                                         <div class="row text-center">
                                             <div class="col-xs-4">
-                                                <button onclick="insertAtCaret('idStaff', '1'); return false; textChangedHandler()" class="btn btn-info btn-block numpad">1</button>
+                                                <button onclick="insertAtCaret('idStaff', '1'); return false;" class="btn btn-info btn-block numpad">1</button>
                                             </div>
                                             <div class="col-xs-4">
                                                 <button onclick="insertAtCaret('idStaff', '2'); return false;" class="btn btn-info btn-block numpad"> 2 </button>
@@ -324,6 +324,8 @@
                 if (e.keyCode === 13)
                     $('#loginButton').click();
             });
+
+            document.getElementById("idStaff").focus();
         });
 
         // Backspace button's function
@@ -354,8 +356,7 @@
 
         }
 
-        var divimg = document.getElementById("scanned-img"),
-    prevSrc;
+        var divimg = document.getElementById("scanned-img"), prevSrc;
         setInterval(function () {
             if (divimg.src !== prevSrc) {
                 prevSrc = divimg.src;
@@ -374,9 +375,7 @@
 
         }
 
-
         // Function for inserting values into the text box from the button
-
         function insertAtCaret(areaId, text) {
             var txtarea = document.getElementById(areaId);
             if (!txtarea) {
@@ -426,14 +425,12 @@
             }
         }
 
-
         // JParticles
         bind('#instance', function () {
             return new JParticles.particle('#instance .demo', {
                 color: '#cd1e2b',
                 range: 5000,
                 proximity: 80,
-                parallax: true,
                 maxSpeed: 0.3
             });
         });
