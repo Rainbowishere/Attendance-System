@@ -12,15 +12,12 @@ namespace Attendance_System.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CheckinCheckout
+    public partial class sysdiagram
     {
-        public System.Guid ID { get; set; }
-        public string PhoneNumberID { get; set; }
-        public Nullable<System.DateTimeOffset> Checkin { get; set; }
-        public Nullable<System.DateTimeOffset> Checkout { get; set; }
-        public string Purpose { get; set; }
-        public string Device { get; set; }
-    
-        public virtual Person Person { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

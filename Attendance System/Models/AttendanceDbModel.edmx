@@ -25,9 +25,36 @@
           <Property Name="Source" Type="nvarchar" MaxLength="256" />
           <Property Name="EmployeeID" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_CheckinCheckout_People">
+          <End Role="People" Type="Self.People" Multiplicity="0..1" />
+          <End Role="CheckinCheckout" Type="Self.CheckinCheckout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="People">
+              <PropertyRef Name="PhoneNumberID" />
+            </Principal>
+            <Dependent Role="CheckinCheckout">
+              <PropertyRef Name="PhoneNumberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="CheckinCheckout" EntityType="Self.CheckinCheckout" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CheckinCheckout_People" Association="Self.FK_CheckinCheckout_People">
+            <End Role="People" EntitySet="People" />
+            <End Role="CheckinCheckout" EntitySet="CheckinCheckout" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -36,6 +63,11 @@
         <EntityContainer Name="AttendanceDbContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CheckinCheckouts" EntityType="Model.CheckinCheckout" />
           <EntitySet Name="People" EntityType="Model.Person" />
+          <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagram" />
+          <AssociationSet Name="FK_CheckinCheckout_People" Association="Model.FK_CheckinCheckout_People">
+            <End Role="Person" EntitySet="People" />
+            <End Role="CheckinCheckout" EntitySet="CheckinCheckouts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CheckinCheckout">
           <Key>
@@ -47,6 +79,7 @@
           <Property Name="Checkout" Type="DateTimeOffset" Precision="7" />
           <Property Name="Purpose" Type="String" MaxLength="560" FixedLength="false" Unicode="true" />
           <Property Name="Device" Type="String" MaxLength="560" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_CheckinCheckout_People" FromRole="CheckinCheckout" ToRole="Person" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -56,8 +89,31 @@
           <Property Name="FullName" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
           <Property Name="Source" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CheckinCheckouts" Relationship="Model.FK_CheckinCheckout_People" FromRole="Person" ToRole="CheckinCheckout" />
         </EntityType>
-      </Schema>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_CheckinCheckout_People">
+          <End Type="Model.Person" Role="Person" Multiplicity="0..1" />
+          <End Type="Model.CheckinCheckout" Role="CheckinCheckout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PhoneNumberID" />
+            </Principal>
+            <Dependent Role="CheckinCheckout">
+              <PropertyRef Name="PhoneNumberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -82,6 +138,17 @@
                 <ScalarProperty Name="Source" ColumnName="Source" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="PhoneNumberID" ColumnName="PhoneNumberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

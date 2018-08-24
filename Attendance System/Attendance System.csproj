@@ -171,6 +171,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CheckinCheckoutsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -201,6 +202,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Person.cs">
+      <DependentUpon>AttendanceDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>AttendanceDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -358,6 +362,11 @@
     <Content Include="Views\People1\Edit.cshtml" />
     <Content Include="Views\People1\Index.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\CheckinCheckouts\Create.cshtml" />
+    <Content Include="Views\CheckinCheckouts\Delete.cshtml" />
+    <Content Include="Views\CheckinCheckouts\Details.cshtml" />
+    <Content Include="Views\CheckinCheckouts\Edit.cshtml" />
+    <Content Include="Views\CheckinCheckouts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

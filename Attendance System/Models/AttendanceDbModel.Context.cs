@@ -27,5 +27,6 @@ namespace Attendance_System.Models
     
         public virtual DbSet<CheckinCheckout> CheckinCheckouts { get; set; }
         public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

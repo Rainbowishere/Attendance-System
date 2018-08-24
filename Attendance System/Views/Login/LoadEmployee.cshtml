@@ -1,6 +1,6 @@
 ﻿@model Attendance_System.Models.Person
 
-@using (Html.BeginForm("Index", "Login", FormMethod.Post))
+@using (Html.BeginForm("Checkin", "Login", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <div class="row">
@@ -66,13 +66,13 @@
             </div>
         </div>
         <div class="col-xs-6">
-            <select class="form-control" style="height:30px ; padding-top:3px">
-                <option value="">ຝຶກງານ</option>
-                <option value="">ສົ່ງເອກະສານ</option>
-                <option value="">ປະຊຸມ</option>
-                <option value="">ມາເອົາຄອມທີ່ແປງ</option>
-                <option value="">ພົວພັນວຽກ</option>
-                <option value="">ເອົາຄອມມາແປງ</option>
+            <select class="form-control" style="height:30px ; padding-top:3px " id="Purpose" name="Purpose">
+                <option value="ຝຶກງານ">ຝຶກງານ</option>
+                <option value="ສົ່ງເອກະສານ">ສົ່ງເອກະສານ</option>
+                <option value="ປະຊຸມ">ປະຊຸມ</option>
+                <option value="ມາເອົາຄອມທີ່ແປງ">ມາເອົາຄອມທີ່ແປງ</option>
+                <option value="ພົວພັນວຽກ">ພົວພັນວຽກ</option>
+                <option value="ເອົາຄອມມາແປງ">ເອົາຄອມມາແປງ</option>
             </select>
         </div>
     </div>
@@ -83,16 +83,17 @@
             </div>
         </div>
         <div class="col-xs-6">
-            <select class="form-control" style="height:30px ; padding-top:3px">
-                <option value="">Laptop</option>
-                <option value="">ເອກະສານ</option>
-                <option value="">PC</option>
+            <select class="form-control" style="height:30px ; padding-top:3px" id="Purpose" name="Purpose">
+                <option value="Laptop">Laptop</option>
+                <option value="ເອກະສານ">ເອກະສານ</option>
+                <option value="PC">PC</option>
+                <option value="Tablet">Tablet</option>
             </select>
         </div>
     </div>
     <div class="modal-footer ">
         <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
-        <button type="submit" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
+        <button type="submit" value="Checkin" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
     </div>
 }
 

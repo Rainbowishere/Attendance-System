@@ -14,9 +14,18 @@ namespace Attendance_System.Models
     
     public partial class Person
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Person()
+        {
+            this.CheckinCheckouts = new HashSet<CheckinCheckout>();
+        }
+    
         public string PhoneNumberID { get; set; }
         public string FullName { get; set; }
         public string Source { get; set; }
         public string EmployeeID { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CheckinCheckout> CheckinCheckouts { get; set; }
     }
 }
