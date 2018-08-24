@@ -1,47 +1,41 @@
 ﻿@model Attendance_System.Models.Person
-<div class="row">
-    <div class="col-xs-6">
-        <div class="form-group">
-            <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
-        </div>
+<form>
+    <div class="form-group">
+        <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
+        <input type="text" class="form-control" />
     </div>
-    <div class="col-xs-6">
-        <div class="form-group">
-            <input type="text" class="form-control" />
-        </div>
-    </div>
-</div>
+</form>
 <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-5">
         <div class="form-group">
             <label class="control-label" style="font-weight:bold">ເບີໂທ:</label>
         </div>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-7">
         <div class="form-group">
             <input type="tel" class="form-control" />
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-5">
         <div class="form-group">
             <label class="control-label" style="font-weight:bold">ລະຫັດພະນັກງານ:</label>
         </div>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-7">
         <div class="form-group">
             <input type="text" class="form-control" />
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-5">
         <div class="form-group">
             <label class="control-label" style="font-weight:bold">ຈຸດປະສົງ:</label>
         </div>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-7">
         <select class="form-control" style="height:30px ; padding-top:3px">
             <option value="">ຝຶກງານ</option>
             <option value="">ສົ່ງເອກະສານ</option>
@@ -53,16 +47,29 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-5">
         <div class="form-group">
             <label class="control-label" style="font-weight:bold">ອຸປະກອນທີ່ນຳເຂົ້າມາ:</label>
         </div>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-7">
         <select class="form-control" style="height:30px ; padding-top:3px">
             <option value="">Laptop</option>
             <option value="">ເອກະສານ</option>
             <option value="">PC</option>
         </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-5">
+        <div class="form-group">
+            <label class="control-label" style="font-weight:bold">ມາຈາກ:</label>
+        </div>
+    </div>
+    <div class="col-xs-7">
+        <div class="form-group">
+            <label class="control-label">@Model.Source</label>
+        </div>
     </div>
 </div>
