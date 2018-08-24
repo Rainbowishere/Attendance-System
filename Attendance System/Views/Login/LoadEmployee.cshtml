@@ -1,8 +1,9 @@
 ﻿@model Attendance_System.Models.Person
 
-@using (Html.BeginForm("Checkin", "Login", FormMethod.Post))
+@using (Html.BeginForm("LoadEmployee", "Login", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+
     <div class="row">
         <div class="col-xs-6">
             <div class="form-group">
@@ -83,7 +84,7 @@
             </div>
         </div>
         <div class="col-xs-6">
-            <select class="form-control" style="height:30px ; padding-top:3px" id="Purpose" name="Purpose">
+            <select class="form-control" style="height:30px ; padding-top:3px" id="Device" name="Device">
                 <option value="Laptop">Laptop</option>
                 <option value="ເອກະສານ">ເອກະສານ</option>
                 <option value="PC">PC</option>
@@ -93,7 +94,7 @@
     </div>
     <div class="modal-footer ">
         <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
-        <button type="submit" value="Checkin" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
+        <button type="submit" value="LoadEmployee" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
     </div>
 }
 

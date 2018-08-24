@@ -29,6 +29,8 @@ namespace Attendance_System.Controllers
             }
             else
             {
+                
+
                 return PartialView(existingUser);
             }
 
@@ -36,28 +38,29 @@ namespace Attendance_System.Controllers
             
         }
 
-        // GET: CheckinCheckouts/Create
-        public ActionResult Checkin()
-        {
-            return View();
-        }
-
         // POST: CheckinCheckouts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Checkin([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device")] CheckinCheckout checkinCheckout)
+        public async Task<ActionResult> LoadEmployee(string id, [Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device")] CheckinCheckout checkinCheckout)
         {
-            if (ModelState.IsValid)
-            {
-                checkinCheckout.ID = Guid.NewGuid();
-                db.CheckinCheckouts.Add(checkinCheckout);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    checkinCheckout.ID = Guid.NewGuid();
+            //    checkinCheckout.Checkin = DateTimeOffset.Now;
+            //    db.CheckinCheckouts.Add(checkinCheckout);
+            //    await db.SaveChangesAsync();
+            //    return RedirectToAction("Index");
+            //}
+            checkinCheckout.ID = Guid.NewGuid();
+            checkinCheckout.PhoneNumberID = db.People.Find(id).PhoneNumberID;
+            checkinCheckout.Checkin = DateTimeOffset.Now;
+            db.CheckinCheckouts.Add(checkinCheckout);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
 
-            return View(checkinCheckout);
+            //return View(checkinCheckout);
         }
     }
 }
