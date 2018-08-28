@@ -1,8 +1,9 @@
 ﻿@model Attendance_System.Models.Person
 
-@using (Html.BeginForm("LoadEmployee", "Login", FormMethod.Post))
+@using (Html.BeginForm("CheckIn", "Login", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+
 
     <div class="row">
         <div class="col-xs-6">
@@ -25,6 +26,7 @@
         <div class="col-xs-6">
             <div class="form-group">
                 <label class="control-label">@Model.PhoneNumberID</label>
+                @Html.HiddenFor(m => m.PhoneNumberID)
             </div>
         </div>
     </div>
@@ -67,14 +69,37 @@
             </div>
         </div>
         <div class="col-xs-6">
-            <select class="form-control" style="height:30px ; padding-top:3px " id="Purpose" name="Purpose">
+            <select class="has_other form-control" style="height:30px ; padding-top:3px" data-other="#Purpose" name="Purpose" data-other-text="ອື່ນໆ...">
+                    <option value="ຝຶກງານ">ຝຶກງານ</option>
+                    <option value="ສົ່ງເອກະສານ">ສົ່ງເອກະສານ</option>
+                    <option value="ປະຊຸມ">ປະຊຸມ</option>
+                    <option value="ມາເອົາຄອມທີ່ແປງ">ມາເອົາຄອມທີ່ແປງ</option>
+                    <option value="ພົວພັນວຽກ">ພົວພັນວຽກ</option>
+                    <option value="ເອົາຄອມມາແປງ">ເອົາຄອມມາແປງ</option>
+                    <option value="ອື່ນໆ...">ອື່ນໆ...</option>
+                </select>
+                <input style="margin: 4px 0" type="text" id="Purpose" class="form-control" name="Purpose2" placeholder="Enter your own value" />
+
+            @*<select class="form-control" name="test" onchange="if (this.value ==='ອື່ນໆ...'){this.form['other'].style.visibility='visible'}else {this.form['Purpose'].style.visibility='hidden'}">
                 <option value="ຝຶກງານ">ຝຶກງານ</option>
                 <option value="ສົ່ງເອກະສານ">ສົ່ງເອກະສານ</option>
                 <option value="ປະຊຸມ">ປະຊຸມ</option>
                 <option value="ມາເອົາຄອມທີ່ແປງ">ມາເອົາຄອມທີ່ແປງ</option>
                 <option value="ພົວພັນວຽກ">ພົວພັນວຽກ</option>
                 <option value="ເອົາຄອມມາແປງ">ເອົາຄອມມາແປງ</option>
+                <option value="ອື່ນໆ...">ອື່ນໆ...</option>
             </select>
+            <input class="form-control" type="text" name="Purpose" style="visibility:hidden;" />*@
+
+            @*<select class="form-control" style="height:30px ; padding-top:3px " id="Purpose" name="Purpose">
+                    <option value="ຝຶກງານ">ຝຶກງານ</option>
+                    <option value="ສົ່ງເອກະສານ">ສົ່ງເອກະສານ</option>
+                    <option value="ປະຊຸມ">ປະຊຸມ</option>
+                    <option value="ມາເອົາຄອມທີ່ແປງ">ມາເອົາຄອມທີ່ແປງ</option>
+                    <option value="ພົວພັນວຽກ">ພົວພັນວຽກ</option>
+                    <option value="ເອົາຄອມມາແປງ">ເອົາຄອມມາແປງ</option>
+                </select>*@
+
         </div>
     </div>
     <div class="row">
@@ -94,9 +119,29 @@
     </div>
     <div class="modal-footer ">
         <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
-        <button type="submit" value="LoadEmployee" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
+        <button type="submit" value="CheckIn" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
     </div>
+
+    <script>
+        // handle cases where dropdown's have an "other" option
+        $.each($("select.has_other").change(function () {
+            updateOther(this, true);
+        }), function () {
+            updateOther(this);
+        });
+
+        function updateOther(select, focus) {
+            var $select = $(select);
+            var $other = $($select.data("other"));
+            var other_text = $select.data("other-text");
+            var text = $select.find("option:selected").text();
+            if (text === other_text) {
+                $other.show();
+                if (focus) $other.focus();
+            } else {
+                $other.val("").hide();
+            }
+        }
+    </script>
+
 }
-
-
-
