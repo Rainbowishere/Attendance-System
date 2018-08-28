@@ -24,7 +24,6 @@ namespace Attendance_System.Controllers
         public ActionResult LoadEmployee(string id)
         {
             var existingUser = db.People.Find(id);
-            var CheckinUser = db.CheckinCheckouts.Find(id);
 
             if (existingUser == null)
             {
