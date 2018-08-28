@@ -54,15 +54,6 @@ namespace Attendance_System.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> CheckIn([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device,Purpose2")] CheckinCheckout checkinCheckout, string Purpose2,string Device2)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    checkinCheckout.ID = Guid.NewGuid();
-            //    checkinCheckout.Checkin = DateTimeOffset.Now;
-            //    db.CheckinCheckouts.Add(checkinCheckout);
-            //    await db.SaveChangesAsync();
-            //    return RedirectToAction("Index");
-            //}
-
             if (checkinCheckout.Purpose == "ອື່ນໆ...")
             {
                 checkinCheckout.Purpose = Purpose2;
@@ -88,21 +79,6 @@ namespace Attendance_System.Controllers
             //return View(checkinCheckout);
         }
 
-        // GET: CheckinCheckouts1/Details/5
-        public async Task<ActionResult> Checkout(Guid? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CheckinCheckout checkinCheckout = await db.CheckinCheckouts.FindAsync(id);
-            if (checkinCheckout == null)
-            {
-                return HttpNotFound();
-            }
-            return View(checkinCheckout);
-        }
-
         // POST: CheckinCheckouts1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -110,14 +86,10 @@ namespace Attendance_System.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Checkout([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device")] CheckinCheckout checkinCheckout)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(checkinCheckout).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            ViewBag.PhoneNumberID = new SelectList(db.People, "PhoneNumberID", "FullName", checkinCheckout.PhoneNumberID);
-            return View(checkinCheckout);
+            db.Entry(checkinCheckout).State = EntityState.Modified;
+            //checkinCheckout.Checkout = DateTimeOffset.Now;
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
     }
