@@ -26,7 +26,7 @@ namespace Attendance_System.Controllers
         public ActionResult LoadEmployee(string id)
         {
             var existingUser = db.People.Find(id);
-            var isCheckedIn = db.CheckinCheckouts.Where(x => x.PhoneNumberID == id && x.Checkin != null && x.Checkout == null).Select(x => x.ID).FirstOrDefault();
+            var isCheckedIn = db.CheckinCheckouts.Where(x => x.PhoneNumberID == id && x.Checkin != null && x.Checkout == null).FirstOrDefault();
 
             if (existingUser == null)
             {
@@ -34,7 +34,7 @@ namespace Attendance_System.Controllers
             }
             else
             {
-                if (isCheckedIn == default(Guid))
+                if (isCheckedIn == null)
                 {
                     return PartialView(existingUser);
                 }
