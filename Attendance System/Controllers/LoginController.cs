@@ -24,10 +24,7 @@ namespace Attendance_System.Controllers
         public ActionResult LoadEmployee(string id)
         {
             var existingUser = db.People.Find(id);
-<<<<<<< HEAD
             var isCheckedIn = db.CheckinCheckouts.Where(x => x.PhoneNumberID == id && x.Checkin != null && x.Checkout == null).FirstOrDefault();
-=======
->>>>>>> 997cf7e6fbbbab7083ed2969e085157d099fd1e0
 
             if (existingUser == null)
             {
@@ -35,7 +32,6 @@ namespace Attendance_System.Controllers
             }
             else
             {
-<<<<<<< HEAD
                 if (isCheckedIn == null)
                 {
                     return PartialView(existingUser);
@@ -45,9 +41,6 @@ namespace Attendance_System.Controllers
                     return PartialView("Checkout", isCheckedIn);
                 }
 
-=======
-                return PartialView(existingUser);
->>>>>>> 997cf7e6fbbbab7083ed2969e085157d099fd1e0
             }
 
             //var person = db.People.Find(id);
@@ -59,7 +52,7 @@ namespace Attendance_System.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> LoadEmployee(string id, [Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device")] CheckinCheckout checkinCheckout)
+        public async Task<ActionResult> Checkin(string id, [Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device")] CheckinCheckout checkinCheckout)
         {
             //if (ModelState.IsValid)
             //{
@@ -70,7 +63,7 @@ namespace Attendance_System.Controllers
             //    return RedirectToAction("Index");
             //}
             checkinCheckout.ID = Guid.NewGuid();
-            checkinCheckout.PhoneNumberID = db.People.Find(id).PhoneNumberID;
+            //checkinCheckout.PhoneNumberID = db.People.Find(id).PhoneNumberID;
             checkinCheckout.Checkin = DateTimeOffset.Now;
             db.CheckinCheckouts.Add(checkinCheckout);
             await db.SaveChangesAsync();
