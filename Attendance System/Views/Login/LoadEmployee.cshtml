@@ -78,7 +78,7 @@
                     <option value="ເອົາຄອມມາແປງ">ເອົາຄອມມາແປງ</option>
                     <option value="ອື່ນໆ...">ອື່ນໆ...</option>
                 </select>
-                <input style="margin: 4px 0" type="text" id="Purpose" class="form-control" name="Purpose2" placeholder="Enter your own value" />
+                <input style="margin: 4px 0" type="text" id="Purpose" class="form-control" name="Purpose2" placeholder="ກະລຸນາລະບຸຈຸດປະສົງຂອງທ່ານ" required/>
 
             @*<select class="form-control" name="test" onchange="if (this.value ==='ອື່ນໆ...'){this.form['other'].style.visibility='visible'}else {this.form['Purpose'].style.visibility='hidden'}">
                 <option value="ຝຶກງານ">ຝຶກງານ</option>
@@ -109,12 +109,15 @@
             </div>
         </div>
         <div class="col-xs-6">
-            <select class="form-control" style="height:30px ; padding-top:3px" id="Device" name="Device">
-                <option value="Laptop">Laptop</option>
+            <select class="has_other form-control" style="height:30px ; padding-top:3px" data-other="#Device" name="Device" data-other-text="ອື່ນໆ...">
+                <option value="">ບໍ່ມີ</option>
+                 <option value="Laptop">Laptop</option>
                 <option value="ເອກະສານ">ເອກະສານ</option>
                 <option value="PC">PC</option>
                 <option value="Tablet">Tablet</option>
+                <option value="ອື່ນໆ...">ອື່ນໆ...</option>
             </select>
+            <input style="margin: 4px 0" type="text" id="Device" class="form-control" name="Device2" placeholder="ກະລຸນາລະບຸອຸປະກອນຂອງທ່ານ" required/>
         </div>
     </div>
     <div class="modal-footer ">
@@ -140,6 +143,13 @@
                 if (focus) $other.focus();
             } else {
                 $other.val("").hide();
+            }
+        }
+
+        var inputs = document.getElementsByTagName('input');
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].hidden == true) {
+                inputs[i].required = false;
             }
         }
     </script>

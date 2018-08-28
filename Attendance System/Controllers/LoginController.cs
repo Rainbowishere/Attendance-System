@@ -52,7 +52,7 @@ namespace Attendance_System.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CheckIn([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device,Purpose2")] CheckinCheckout checkinCheckout, string Purpose2)
+        public async Task<ActionResult> CheckIn([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device,Purpose2")] CheckinCheckout checkinCheckout, string Purpose2,string Device2)
         {
             //if (ModelState.IsValid)
             //{
@@ -68,6 +68,16 @@ namespace Attendance_System.Controllers
                 checkinCheckout.Purpose = Purpose2;
             }
 
+
+            if (checkinCheckout.Device == "ອື່ນໆ...")
+            {
+                checkinCheckout.Device = Device2;
+            }
+
+            if (checkinCheckout.Device == "")
+            {
+                checkinCheckout.Device = null;
+            }
             checkinCheckout.ID = Guid.NewGuid();
             //checkinCheckout.PhoneNumberID = db.People.Find(id).PhoneNumberID;
             checkinCheckout.Checkin = DateTimeOffset.Now;
