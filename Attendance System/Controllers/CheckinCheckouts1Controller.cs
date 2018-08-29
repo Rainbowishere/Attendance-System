@@ -46,10 +46,10 @@ namespace Attendance_System.Controllers
 
         // POST: CheckinCheckouts1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device")] CheckinCheckout checkinCheckout)
+        public async Task<ActionResult> Create([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device,Comment")] CheckinCheckout checkinCheckout)
         {
             if (ModelState.IsValid)
             {
@@ -81,10 +81,10 @@ namespace Attendance_System.Controllers
 
         // POST: CheckinCheckouts1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device")] CheckinCheckout checkinCheckout)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device,Comment")] CheckinCheckout checkinCheckout)
         {
             if (ModelState.IsValid)
             {

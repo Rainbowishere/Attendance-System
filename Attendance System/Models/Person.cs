@@ -24,6 +24,7 @@ namespace Attendance_System.Models
         public string FullName { get; set; }
         public string Source { get; set; }
         public string EmployeeID { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CheckinCheckout> CheckinCheckouts { get; set; }

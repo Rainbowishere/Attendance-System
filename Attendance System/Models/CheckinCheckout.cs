@@ -20,6 +20,7 @@ namespace Attendance_System.Models
         public Nullable<System.DateTimeOffset> Checkout { get; set; }
         public string Purpose { get; set; }
         public string Device { get; set; }
+        public string Comment { get; set; }
     
         public virtual Person Person { get; set; }
     }

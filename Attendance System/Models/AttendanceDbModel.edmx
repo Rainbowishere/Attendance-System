@@ -15,6 +15,7 @@
           <Property Name="Checkout" Type="datetimeoffset" Precision="7" />
           <Property Name="Purpose" Type="nvarchar" MaxLength="560" />
           <Property Name="Device" Type="nvarchar" MaxLength="560" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="People">
           <Key>
@@ -24,6 +25,7 @@
           <Property Name="FullName" Type="nvarchar" MaxLength="512" />
           <Property Name="Source" Type="nvarchar" MaxLength="256" />
           <Property Name="EmployeeID" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -80,6 +82,7 @@
           <Property Name="Purpose" Type="String" MaxLength="560" FixedLength="false" Unicode="true" />
           <Property Name="Device" Type="String" MaxLength="560" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Person" Relationship="Model.FK_CheckinCheckout_People" FromRole="CheckinCheckout" ToRole="Person" />
+          <Property Name="Comment" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -90,6 +93,7 @@
           <Property Name="Source" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="EmployeeID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CheckinCheckouts" Relationship="Model.FK_CheckinCheckout_People" FromRole="Person" ToRole="CheckinCheckout" />
+          <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -122,6 +126,7 @@
           <EntitySetMapping Name="CheckinCheckouts">
             <EntityTypeMapping TypeName="Model.CheckinCheckout">
               <MappingFragment StoreEntitySet="CheckinCheckout">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Device" ColumnName="Device" />
                 <ScalarProperty Name="Purpose" ColumnName="Purpose" />
                 <ScalarProperty Name="Checkout" ColumnName="Checkout" />
@@ -134,6 +139,7 @@
           <EntitySetMapping Name="People">
             <EntityTypeMapping TypeName="Model.Person">
               <MappingFragment StoreEntitySet="People">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="Source" ColumnName="Source" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />

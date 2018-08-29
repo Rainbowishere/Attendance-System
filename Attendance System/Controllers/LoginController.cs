@@ -79,15 +79,15 @@ namespace Attendance_System.Controllers
             //return View(checkinCheckout);
         }
 
-        // POST: CheckinCheckouts1/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+
+
+        // POST: CheckinCheckouts1/Delete/5
+        [HttpPost, ActionName("Checkout")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Checkout([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device")] CheckinCheckout checkinCheckout)
+        public async Task<ActionResult> Checkout([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device,Comment")] CheckinCheckout checkinCheckout)
         {
+            checkinCheckout.Checkout = DateTimeOffset.Now;
             db.Entry(checkinCheckout).State = EntityState.Modified;
-            //checkinCheckout.Checkout = DateTimeOffset.Now;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
