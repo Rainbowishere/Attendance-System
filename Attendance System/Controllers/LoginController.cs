@@ -92,14 +92,11 @@ namespace Attendance_System.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "PhoneNumberID,FullName,Source,EmployeeID,IsActive")] Person person)
         {
-            if (ModelState.IsValid)
-            {
-                db.People.Add(person);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
+            person.IsActive = true;
+            db.People.Add(person);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
 
-            return View(person);
         }
 
     }
