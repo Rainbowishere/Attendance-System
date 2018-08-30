@@ -1,115 +1,115 @@
 ﻿@model Attendance_System.Models.CheckinCheckout
 
 
-    @using (Html.BeginForm("Checkout", "Login", FormMethod.Post))
+@using (Html.BeginForm("Checkout", "Login", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input name="ID" value="@Model.ID" hidden />
+    <input name="PhoneNumberID" value="@Model.PhoneNumberID" hidden />
+    <input name="Checkin" value="@Model.Checkin" hidden />
+    <input name="Purpose" value="@Model.Purpose" hidden />
+    <input name="Device" value="@Model.Device" hidden />
+    <div class="row">
+
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label">@Model.Person.FullName</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ເບີໂທ:</label>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label">@Model.PhoneNumberID</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ມາຈາກ:</label>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label">@Model.Person.Source</label>
+            </div>
+        </div>
+    </div>
+
+
+
+    if (!string.IsNullOrEmpty(Model.Person.EmployeeID))
     {
-        @Html.AntiForgeryToken()
-        <input name="ID" value="@Model.ID" hidden/>
-        <input name="PhoneNumberID" value="@Model.PhoneNumberID" hidden/>
-        <input name="Checkin" value="@Model.Checkin" hidden/>
-        <input name="Purpose" value="@Model.Purpose" hidden/>
-        <input name="Device" value="@Model.Device" hidden/>
-        <div class="row">
-
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label class="control-label">@Model.Person.FullName</label>
-                </div>
-            </div>
-        </div>
         <div class="row">
             <div class="col-xs-6">
                 <div class="form-group">
-                    <label class="control-label" style="font-weight:bold">ເບີໂທ:</label>
+                    <label class="control-label" style="font-weight:bold">ລະຫັດພະນັກງານ:</label>
                 </div>
             </div>
             <div class="col-xs-6">
                 <div class="form-group">
-                    <label class="control-label">@Model.PhoneNumberID</label>
+                    <label class="control-label">@Model.Person.EmployeeID</label>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label class="control-label" style="font-weight:bold">ມາຈາກ:</label>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label class="control-label">@Model.Person.Source</label>
-                </div>
-            </div>
-        </div>
-
-
-
-        if (!string.IsNullOrEmpty(Model.Person.EmployeeID))
-        {
-            <div class="row">
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        <label class="control-label" style="font-weight:bold">ລະຫັດພະນັກງານ:</label>
-                    </div>
-                </div>
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        <label class="control-label">@Model.Person.EmployeeID</label>
-                    </div>
-                </div>
-            </div>
-        }
-
-
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label class="control-label" style="font-weight:bold">ຈຸດປະສົງ:</label>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <label class="control-label">@Model.Purpose</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label class="control-label" style="font-weight:bold">ອຸປະກອນທີ່ນຳເຂົ້າມາ:</label>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <label class="control-label">@Model.Device</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label class="control-label" style="font-weight:bold">ເວລາເຂົ້າ:</label>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <label class="control-label">@Model.Checkin</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6">
-                <div class="form-group">
-                    <label class="control-label"  style="font-weight:bold">ຫມາຍເຫດ:</label>
-                </div>
-            </div>
-            <div class="col-xs-6">
-                <textarea rows="3" name="Comment" class="form-control" maxlength="256" />
-            </div>
-        </div>
-        <div class="modal-footer ">
-            <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
-            <button type="submit" value="save" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ອອກ</button>
         </div>
     }
+
+
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ຈຸດປະສົງ:</label>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <label class="control-label">@Model.Purpose</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ອຸປະກອນທີ່ນຳເຂົ້າມາ:</label>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <label class="control-label">@Model.Device</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ເວລາເຂົ້າ:</label>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <label class="control-label">@Model.Checkin</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ຫມາຍເຫດ:</label>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <textarea rows="3" name="Comment" class="form-control" maxlength="256" />
+        </div>
+    </div>
+    <div class="modal-footer ">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
+        <button type="submit" value="save" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ອອກ</button>
+    </div>
+}
 
 

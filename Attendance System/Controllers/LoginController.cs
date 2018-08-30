@@ -86,5 +86,21 @@ namespace Attendance_System.Controllers
             return RedirectToAction("Index");
         }
 
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost, ActionName("Register")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create([Bind(Include = "PhoneNumberID,FullName,Source,EmployeeID,IsActive")] Person person)
+        {
+            if (ModelState.IsValid)
+            {
+                db.People.Add(person);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            return View(person);
+        }
+
     }
 }

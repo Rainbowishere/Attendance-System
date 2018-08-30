@@ -1,8 +1,13 @@
-﻿using Attendance_System.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
-using System.Net;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
+using Attendance_System.Models;
 
 namespace Attendance_System.Controllers
 {
@@ -42,7 +47,7 @@ namespace Attendance_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "PhoneNumberID,FullName,Source,EmployeeID,Device")] Person person)
+        public async Task<ActionResult> Create([Bind(Include = "PhoneNumberID,FullName,Source,EmployeeID,IsActive")] Person person)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +79,7 @@ namespace Attendance_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "PhoneNumberID,FullName,Source,EmployeeID,Device")] Person person)
+        public async Task<ActionResult> Edit([Bind(Include = "PhoneNumberID,FullName,Source,EmployeeID,IsActive")] Person person)
         {
             if (ModelState.IsValid)
             {

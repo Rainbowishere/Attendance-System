@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.EmployeeID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Source)
+            @Html.DisplayNameFor(model => model.IsActive)
         </th>
         <th></th>
     </tr>
@@ -38,7 +38,7 @@
             @Html.DisplayFor(modelItem => item.EmployeeID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Source)
+            @Html.DisplayFor(modelItem => item.IsActive)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.PhoneNumberID }) |

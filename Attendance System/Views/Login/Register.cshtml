@@ -1,74 +1,120 @@
-﻿<form>
-    <div class="form-group">
-        <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
-        <input type="text" class="form-control" />
-    </div>
-</form>
-<div class="row">
-    <div class="col-xs-5">
-        <div class="form-group">
-            <label class="control-label" style="font-weight:bold">ເບີໂທ:</label>
-        </div>
-    </div>
-    <div class="col-xs-7">
-        <div class="form-group">
-            <input type="tel" class="form-control" />
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-5">
-        <div class="form-group">
-            <label class="control-label" style="font-weight:bold">ລະຫັດພະນັກງານ:</label>
-        </div>
-    </div>
-    <div class="col-xs-7">
-        <div class="form-group">
-            <input type="text" class="form-control" />
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-5">
-        <div class="form-group">
-            <label class="control-label" style="font-weight:bold">ຈຸດປະສົງ:</label>
-        </div>
-    </div>
-    <div class="col-xs-7">
-        <select class="form-control" style="height:30px ; padding-top:3px">
-            <option value="">ຝຶກງານ</option>
-            <option value="">ສົ່ງເອກະສານ</option>
-            <option value="">ປະຊຸມ</option>
-            <option value="">ມາເອົາຄອມທີ່ແປງ</option>
-            <option value="">ພົວພັນວຽກ</option>
-            <option value="">ເອົາຄອມມາແປງ</option>
-        </select>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-5">
-        <div class="form-group">
-            <label class="control-label" style="font-weight:bold">ອຸປະກອນທີ່ນຳເຂົ້າມາ:</label>
-        </div>
-    </div>
-    <div class="col-xs-7">
-        <select class="form-control" style="height:30px ; padding-top:3px">
-            <option value="">Laptop</option>
-            <option value="">ເອກະສານ</option>
-            <option value="">PC</option>
-        </select>
-    </div>
-</div>
+﻿@model Attendance_System.Models.CheckinCheckout
 
-<div class="row">
-    <div class="col-xs-5">
+
+@using (Html.BeginForm("Register", "Login", FormMethod.Post))
+{
+    <form>
         <div class="form-group">
-            <label class="control-label" style="font-weight:bold">ມາຈາກ:</label>
-        </div>
-    </div>
-    <div class="col-xs-7">
-        <div class="form-group">
+            <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
             <input type="text" class="form-control" />
         </div>
+    </form>
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ເບີໂທ:</label>
+            </div>
+        </div>
+        <div class="col-xs-7">
+            <div class="form-group">
+                <input type="tel" class="form-control" />
+            </div>
+        </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ລະຫັດພະນັກງານ:</label>
+            </div>
+        </div>
+        <div class="col-xs-7">
+            <div class="form-group">
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ຈຸດປະສົງ:</label>
+            </div>
+        </div>
+        <div class="col-xs-7">
+            <select class="has_other form-control" style="height:30px ; padding-top:3px" data-other="#Purpose" name="Purpose" data-other-text="ອື່ນໆ...">
+                <option value="ຝຶກງານ">ຝຶກງານ</option>
+                <option value="ສົ່ງເອກະສານ">ສົ່ງເອກະສານ</option>
+                <option value="ປະຊຸມ">ປະຊຸມ</option>
+                <option value="ມາເອົາຄອມທີ່ແປງ">ມາເອົາຄອມທີ່ແປງ</option>
+                <option value="ພົວພັນວຽກ">ພົວພັນວຽກ</option>
+                <option value="ເອົາຄອມມາແປງ">ເອົາຄອມມາແປງ</option>
+                <option value="ອື່ນໆ...">ອື່ນໆ...</option>
+            </select>
+            <input style="margin: 4px 0" type="text" id="Purpose" class="form-control" name="Purpose2" placeholder="ກະລຸນາລະບຸຈຸດປະສົງຂອງທ່ານ" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ອຸປະກອນທີ່ນຳເຂົ້າມາ:</label>
+            </div>
+        </div>
+        <div class="col-xs-7">
+            <select class="has_other form-control" style="height:30px ; padding-top:3px" data-other="#Device" name="Device" data-other-text="ອື່ນໆ...">
+                <option value="">ບໍ່ມີ</option>
+                <option value="Laptop">Laptop</option>
+                <option value="ເອກະສານ">ເອກະສານ</option>
+                <option value="PC">PC</option>
+                <option value="Tablet">Tablet</option>
+                <option value="ອື່ນໆ...">ອື່ນໆ...</option>
+            </select>
+            <input style="margin: 4px 0" type="text" id="Device" class="form-control" name="Device2" placeholder="ກະລຸນາລະບຸອຸປະກອນຂອງທ່ານ" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ມາຈາກ:</label>
+            </div>
+        </div>
+        <div class="col-xs-7">
+            <div class="form-group">
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+
+        <div class="modal-footer ">
+            <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
+            <button type="submit" value="Register" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
+        </div>
+    </div>
+
+    <script>
+        // handle cases where dropdown's have an "other" option
+        $.each($("select.has_other").change(function () {
+            updateOther(this, true);
+        }), function () {
+            updateOther(this);
+        });
+
+        function updateOther(select, focus) {
+            var $select = $(select);
+            var $other = $($select.data("other"));
+            var other_text = $select.data("other-text");
+            var text = $select.find("option:selected").text();
+            if (text === other_text) {
+                $other.show();
+                if (focus) $other.focus();
+            } else {
+                $other.val("").hide();
+            }
+        }
+
+        var inputs = document.getElementsByTagName('input');
+        for (var i = 0; i < inputs.length; i++) {
+            if (inputs[i].hidden === true) {
+                inputs[i].required = false;
+            }
+        }
+    </script>
+}
