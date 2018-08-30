@@ -1,4 +1,4 @@
-SELECT * FROM CheckInCheckOut ORDER BY Checkin;
+SELECT * FROM CheckInCheckOut ORDER BY Checkin DESC;
 
 ALTER TABLE CheckInCheckOut ADD Comment NVARCHAR(256);
 
