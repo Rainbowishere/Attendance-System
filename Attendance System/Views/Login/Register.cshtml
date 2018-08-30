@@ -1,14 +1,16 @@
-﻿@model Attendance_System.Models.CheckinCheckout
-
-
-@using (Html.BeginForm("Register", "Login", FormMethod.Post))
+﻿@using (Html.BeginForm("Register", "Login", FormMethod.Post))
 {
-    <form>
-        <div class="form-group">
-            <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
-            <input type="text" name="FullName" class="form-control" />
-        </div>
-    </form>
+    @Html.AntiForgeryToken()
+    <style>
+        .modal-sm {
+            width: 800px;
+        }
+    </style>
+
+    <div class="form-group">
+        <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
+        <input type="text" name="FullName" class="form-control" />
+    </div>
     <div class="row">
         <div class="col-xs-5">
             <div class="form-group">
@@ -17,7 +19,7 @@
         </div>
         <div class="col-xs-7">
             <div class="form-group">
-                <input type="tel" name="PhoneNumberID" class="form-control" />
+                <input type="tel" name="PhoneNumberID" value="@ViewBag.Phone" class="form-control" />
             </div>
         </div>
     </div>
@@ -83,10 +85,10 @@
             </div>
         </div>
 
-        <div class="modal-footer ">
-            <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
-            <button type="submit" value="Register" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
-        </div>
+    </div>
+    <div class="modal-footer ">
+        <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
+        <button type="submit" value="Register" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
     </div>
 
     <script>
@@ -116,5 +118,15 @@
                 inputs[i].required = false;
             }
         }
+
+        $(function () {
+            $("#modalTitle").html("ກະລຸນາ");
+
+        });
     </script>
+
+
+
+
+
 }

@@ -31,12 +31,15 @@ namespace Attendance_System.Controllers
             var isCheckedIn = db.CheckinCheckouts.Where(x => x.PhoneNumberID == id && x.Checkin != null && x.Checkout == null).FirstOrDefault();
 
             if (existingUser == null)
+            {
+
+                ViewBag.Phone = id;
                 return PartialView("Register");
+            }
             else
             {
                 if (isCheckedIn == null)
                     return PartialView(existingUser);
-                
                 else
                     return PartialView("Checkout", isCheckedIn);
             }
@@ -90,11 +93,28 @@ namespace Attendance_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Register")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "PhoneNumberID,FullName,Source,EmployeeID,IsActive")] Person person)
+        public async Task<ActionResult> Create([Bind(Include = "PhoneNumberID,FullName,Source,EmployeeID,IsActive")] Person person, [Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device,Purpose2")] CheckinCheckout checkinCheckout, string Purpose2, string Device2)
         {
             person.IsActive = true;
             db.People.Add(person);
             await db.SaveChangesAsync();
+
+            var otherText = "ອື່ນໆ...";
+
+            if (checkinCheckout.Purpose == otherText)
+                checkinCheckout.Purpose = Purpose2;
+
+            if (checkinCheckout.Device == otherText)
+                checkinCheckout.Device = Device2;
+
+            if (checkinCheckout.Device == "")
+                checkinCheckout.Device = null;
+
+            checkinCheckout.ID = Guid.NewGuid();
+            checkinCheckout.Checkin = DateTimeOffset.Now;
+            db.CheckinCheckouts.Add(checkinCheckout);
+            await db.SaveChangesAsync();
+
             return RedirectToAction("Index");
 
         }
