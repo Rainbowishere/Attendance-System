@@ -15,9 +15,10 @@ namespace Attendance_System.Controllers
         private AttendanceDbContext db = new AttendanceDbContext();
 
         // GET: Login
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View();
+            var checkinCheckouts = db.CheckinCheckouts.Include(c => c.Person);
+            return View(await checkinCheckouts.ToListAsync());
         }
 
         /// <summary>

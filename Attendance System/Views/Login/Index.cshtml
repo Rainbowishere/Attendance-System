@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Attendance_System.Models.CheckinCheckout>
 @{
     Layout = null;
 }
@@ -19,10 +19,12 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
+    <link href="~/Content/datatables.css" rel="stylesheet" />
 
     <!-- JParticles -->
     <link href="~/Content/JParticles/css/style.css" rel="stylesheet" />
 
+    
     <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
@@ -31,6 +33,7 @@
     <link href="~/Content/style.css" rel="stylesheet" />
     <link href="~/Content/css/all.css" rel="stylesheet" />
     <script src="~/Scripts/js/all.js"></script>
+    
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -299,11 +302,69 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table display" id="myTable">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Checkin)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Checkout)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Purpose)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Device)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Comment)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Person.FullName)
+                                    </th>
+                                    <th></th>
+                                </tr>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Checkin)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Checkout)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Purpose)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Device)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Comment)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Person.FullName)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="~/Scripts/webcodecamjs/jquery.js"></script>
     <script type="text/javascript" src="~/Scripts/webcodecamjs/qrcodelib.js"></script>
     <script type="text/javascript" src="~/Scripts/webcodecamjs/webcodecamjs.js"></script>
@@ -311,7 +372,6 @@
     <script src="~/Content/JParticles/js/event.js"></script>
     <script src="~/Content/JParticles/js/jparticles.js"></script>
     <script src="~/Content/JParticles/js/particle.js"></script>
-
     <script>
         // Clears the text box
 
@@ -329,7 +389,10 @@
             });
 
             document.getElementById("idStaff").focus();
+            
         });
+
+
 
         // Backspace button's function
         $("#backspace").click(function () {
@@ -438,9 +501,8 @@
             });
         });
 
-        $('#myModal').on('hide.bs.modal', function (e) {
-            // do something...
-            alert(1);
+        $(document).ready(function () {
+            $('#myTable').DataTable();
         });
     </script>
 </body>
