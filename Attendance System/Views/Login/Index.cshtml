@@ -305,22 +305,20 @@
                             <table class="table" id="myTable">
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Checkin)
+                                        ເວລາເຂົ້າ
                                     </th>
-                                    <th hidden>
-                                        @Html.DisplayNameFor(model => model.Checkout)
+                                    <th >
+                                       ຊື່ ແລະ ນາມສະກຸນ
+                                    </th>
+                                    
+                                    <th>
+                                      ຈຸດປະສົງ
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Purpose)
+                                       ອຸປະກອນທີ່ນຳເຂົ້າມາ
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Device)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Comment)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.Person.FullName)
+                                       ຫມາຍເຫດ
                                     </th>
                                 </tr>
 
@@ -333,9 +331,7 @@
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Person.FullName)
                                         </td>
-                                        <td hidden>
-                                            @Html.DisplayFor(modelItem => item.Checkout)
-                                        </td>
+                                       
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Purpose)
                                         </td>
