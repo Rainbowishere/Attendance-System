@@ -17,7 +17,7 @@ namespace Attendance_System.Controllers
         // GET: Login
         public async Task<ActionResult> Index()
         {
-            var checkinCheckouts = db.CheckinCheckouts.Include(c => c.Person);
+            var checkinCheckouts = db.CheckinCheckouts.Include(c => c.Person).Where(x => x.Checkout == null).OrderByDescending(c => c.Checkin);
             return View(await checkinCheckouts.ToListAsync());
         }
 
@@ -94,7 +94,7 @@ namespace Attendance_System.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Register")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "PhoneNumberID,FullName,Source,EmployeeID,IsActive")] Person person, [Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device,Purpose2")] CheckinCheckout checkinCheckout, string Purpose2, string Device2)
+        public async Task<ActionResult> Create([Bind(Include = "PhoneNumberID,FullName,Source,EmployeeID,IsActive")] Person person, [Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device,Purpose2, Comment")] CheckinCheckout checkinCheckout, string Purpose2, string Device2)
         {
             person.IsActive = true;
             db.People.Add(person);

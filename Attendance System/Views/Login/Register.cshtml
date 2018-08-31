@@ -3,13 +3,21 @@
     @Html.AntiForgeryToken()
     <style>
         .modal-sm {
-            width: 800px;
+            width: 500px;
         }
     </style>
 
-    <div class="form-group">
-        <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
-        <input type="text" name="FullName" class="form-control" />
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
+            </div>
+        </div>
+        <div class="col-xs-7">
+            <div class="form-group">
+                <input type="text" name="FullName" class="form-control" required/>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-xs-5">
@@ -19,7 +27,7 @@
         </div>
         <div class="col-xs-7">
             <div class="form-group">
-                <input type="tel" name="PhoneNumberID" value="@ViewBag.Phone" class="form-control" />
+                <input type="tel" name="PhoneNumberID" value="@ViewBag.Phone" class="form-control" required/>
             </div>
         </div>
     </div>
@@ -81,7 +89,21 @@
         </div>
         <div class="col-xs-7">
             <div class="form-group">
-                <input type="text" name="Source" class="form-control" />
+                <input type="text" name="Source" class="form-control" required/>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold">ຫມາຍເຫດ:</label>
+            </div>
+        </div>
+        <div class="col-xs-7">
+            <div class="form-group">
+                <textarea rows="3" name="Comment" class="form-control" maxlength="256" style="margin-bottom: 12px" />
             </div>
         </div>
 
@@ -124,7 +146,7 @@
 
         });
 
-        
+
     </script>
 
 
