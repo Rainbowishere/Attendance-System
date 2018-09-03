@@ -8,12 +8,16 @@
         .modal-sm {
             width: 500px;
         }
+
+        .dropdown {
+            height:30px ; padding-top:3px
+        }
     </style>
 
     <div class="row">
         <div class="col-xs-5">
             <div class="form-group">
-                <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
+                <label class="control-label" style="font-weight:bold"><i class="fa fa-user" style="width: 20px"></i> ຊື່ ແລະ ນາມສະກຸນ:</label>
             </div>
         </div>
         <div class="col-xs-7">
@@ -25,7 +29,7 @@
     <div class="row">
         <div class="col-xs-5">
             <div class="form-group">
-                <label class="control-label" style="font-weight:bold">ເບີໂທ:</label>
+                <label class="control-label" style="font-weight:bold"><i class="fa fa-phone" style="width: 20px"></i> ເບີໂທ:</label>
             </div>
         </div>
         <div class="col-xs-7">
@@ -38,7 +42,7 @@
     <div class="row">
         <div class="col-xs-5">
             <div class="form-group">
-                <label class="control-label" style="font-weight:bold">ມາຈາກ:</label>
+                <label class="control-label" style="font-weight:bold"><i class="fas fa-map-marker" style="width: 20px"></i> ມາຈາກ:</label>
             </div>
         </div>
         <div class="col-xs-7">
@@ -55,7 +59,7 @@
         <div class="row">
             <div class="col-xs-5">
                 <div class="form-group">
-                    <label class="control-label" style="font-weight:bold">ລະຫັດພະນັກງານ:</label>
+                    <label class="control-label" style="font-weight:bold"><i class="fa fa-id-badge" style="width: 20px"></i> ລະຫັດພະນັກງານ:</label>
                 </div>
             </div>
             <div class="col-xs-7">
@@ -70,11 +74,11 @@
     <div class="row">
         <div class="col-xs-5">
             <div class="form-group">
-                <label class="control-label" style="font-weight:bold">ຈຸດປະສົງ:</label>
+                <label class="control-label" style="font-weight:bold"><i class="fa fa-question-circle" style="width: 20px"></i> ຈຸດປະສົງ:</label>
             </div>
         </div>
         <div class="col-xs-7">
-            <select class="has_other form-control" style="height:30px ; padding-top:3px" data-other="#Purpose" name="Purpose" data-other-text="ອື່ນໆ...">
+            <select class="has_other form-control" @*style="height:30px ; padding-top:3px"*@ data-other="#Purpose" name="Purpose" data-other-text="ອື່ນໆ...">
                 <option value="ຝຶກງານ">ຝຶກງານ</option>
                 <option value="ສົ່ງເອກະສານ">ສົ່ງເອກະສານ</option>
                 <option value="ປະຊຸມ">ປະຊຸມ</option>
@@ -83,17 +87,30 @@
                 <option value="ເອົາຄອມມາແປງ">ເອົາຄອມມາແປງ</option>
                 <option value="ອື່ນໆ...">ອື່ນໆ...</option>
             </select>
-            <input style="margin: 4px 0" type="text" id="Purpose" class="form-control" name="Purpose2" placeholder="ກະລຸນາລະບຸຈຸດປະສົງຂອງທ່ານ" />
+            <input style="margin: 4px 0" type="text" id="Purpose" class="form-control" name="Purpose2" placeholder="ກະລຸນາລະບຸຈຸດປະສົງຂອງທ່ານ" autocomplete="off" />
         </div>
     </div>
+
     <div class="row">
         <div class="col-xs-5">
             <div class="form-group">
-                <label class="control-label" style="font-weight:bold">ອຸປະກອນທີ່ນຳເຂົ້າມາ:</label>
+                <label class="control-label" style="font-weight:bold"><i class="fa fa-building" style="width: 20px"></i> ຜະແຫນກ:</label>
+            </div>
+        </div>
+
+        <div class="col-xs-7">
+            @Html.DropDownList("DepartmentID", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold"><i class="fa fa-laptop" style="width: 20px"></i> ອຸປະກອນທີ່ນຳເຂົ້າມາ:</label>
             </div>
         </div>
         <div class="col-xs-7">
-            <select class="has_other form-control" style="height:30px ; padding-top:3px" data-other="#Device" name="Device" data-other-text="ອື່ນໆ...">
+            <select class="has_other form-control" @*style="height:30px ; padding-top:3px"*@ data-other="#Device" name="Device" data-other-text="ອື່ນໆ...">
                 <option value="">ບໍ່ມີ</option>
                 <option value="Laptop">Laptop</option>
                 <option value="ເອກະສານ">ເອກະສານ</option>
@@ -101,9 +118,23 @@
                 <option value="Tablet">Tablet</option>
                 <option value="ອື່ນໆ...">ອື່ນໆ...</option>
             </select>
-            <input style="margin: 4px 0" type="text" id="Device" class="form-control" name="Device2" placeholder="ກະລຸນາລະບຸອຸປະກອນຂອງທ່ານ" />
+            <input style="margin: 4px 0" type="text" id="Device" class="form-control" name="Device2" placeholder="ກະລຸນາລະບຸອຸປະກອນຂອງທ່ານ" autocomplete="off" />
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold"><i class="fa fa-comment" style="width: 20px"></i> ຫມາຍເຫດ:</label>
+            </div>
+        </div>
+        <div class="col-xs-7">
+            <div class="form-group">
+                <textarea rows="3" name="Comment" class="form-control" maxlength="256" style="margin-bottom: 12px" />
+            </div>
+        </div>
+
+    </div>
+    
     <div class="modal-footer ">
         <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
         <button type="submit" value="CheckIn" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
@@ -141,7 +172,7 @@
             $("#modalTitle").html("ກະລຸນາລົງຊື່ເຂົ້າໃຊ້");
 
         });
-       
+
     </script>
 
 }

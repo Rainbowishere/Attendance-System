@@ -9,6 +9,8 @@
         <EntityTypeShape EntityType="Model.Person" Width="1.5" PointX="0.75" PointY="1.125" />
         <EntityTypeShape EntityType="Model.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" />
         <AssociationConnector Association="Model.FK_CheckinCheckout_People" />
+        <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="3.375" PointY="4.875" />
+        <AssociationConnector Association="Model.FK_CheckinCheckout_Department1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

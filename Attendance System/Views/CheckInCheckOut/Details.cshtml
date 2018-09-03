@@ -1,0 +1,74 @@
+﻿@model Attendance_System.Models.CheckinCheckout
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CheckinCheckout</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Checkin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Checkin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Checkout)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Checkout)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Purpose)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Purpose)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Device)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Device)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Person.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.Department1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.Department1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -171,12 +171,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CheckinCheckouts1Controller.cs" />
-    <Compile Include="Controllers\CheckinCheckoutsController.cs" />
+    <Compile Include="Controllers\CheckInCheckOutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\People1Controller.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -200,6 +198,9 @@
     <Compile Include="Models\CheckinCheckout.cs">
       <DependentUpon>AttendanceDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Department.cs">
+      <DependentUpon>AttendanceDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Person.cs">
@@ -213,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="audio\beep.mp3" />
+    <Content Include="Content\boon-all.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\all.css" />
@@ -253,6 +255,7 @@
     <Content Include="Content\style5.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\otf\OFL.txt" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Models\AttendanceDbModel.Context.tt">
@@ -288,6 +291,20 @@
     <Content Include="Models\AttendanceDbModel.edmx.diagram">
       <DependentUpon>AttendanceDbModel.edmx</DependentUpon>
     </Content>
+    <Content Include="fonts\boonhome-400-oblique.otf" />
+    <Content Include="fonts\boonhome-400.otf" />
+    <Content Include="fonts\boonhome-700-oblique.otf" />
+    <Content Include="fonts\boonhome-700.otf" />
+    <Content Include="fonts\otf\Boon-Bold.otf" />
+    <Content Include="fonts\otf\Boon-BoldItalic.otf" />
+    <Content Include="fonts\otf\Boon-Italic.otf" />
+    <Content Include="fonts\otf\Boon-Light.otf" />
+    <Content Include="fonts\otf\Boon-LightItalic.otf" />
+    <Content Include="fonts\otf\Boon-Medium.otf" />
+    <Content Include="fonts\otf\Boon-MediumItalic.otf" />
+    <Content Include="fonts\otf\Boon-Regular.otf" />
+    <Content Include="fonts\otf\Boon-SemiBold.otf" />
+    <Content Include="fonts\otf\Boon-SemiBoldItalic.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datatables.js" />
     <Content Include="Scripts\html5-qrcode.min.js" />
@@ -366,11 +383,11 @@
     <Content Include="Views\CheckinCheckouts1\Details.cshtml" />
     <Content Include="Views\CheckinCheckouts1\Edit.cshtml" />
     <Content Include="Views\CheckinCheckouts1\Index.cshtml" />
-    <Content Include="Views\People1\Create.cshtml" />
-    <Content Include="Views\People1\Delete.cshtml" />
-    <Content Include="Views\People1\Details.cshtml" />
-    <Content Include="Views\People1\Edit.cshtml" />
-    <Content Include="Views\People1\Index.cshtml" />
+    <Content Include="Views\CheckInCheckOut\Create.cshtml" />
+    <Content Include="Views\CheckInCheckOut\Delete.cshtml" />
+    <Content Include="Views\CheckInCheckOut\Details.cshtml" />
+    <Content Include="Views\CheckInCheckOut\Edit.cshtml" />
+    <Content Include="Views\CheckInCheckOut\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

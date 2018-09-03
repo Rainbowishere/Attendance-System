@@ -11,18 +11,18 @@ using Attendance_System.Models;
 
 namespace Attendance_System.Controllers
 {
-    public class CheckinCheckouts1Controller : Controller
+    public class CheckInCheckOutController : Controller
     {
         private AttendanceDbContext db = new AttendanceDbContext();
 
-        // GET: CheckinCheckouts1
+        // GET: CheckInCheckOut
         public async Task<ActionResult> Index()
         {
-            var checkinCheckouts = db.CheckinCheckouts.Include(c => c.Person);
+            var checkinCheckouts = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).OrderByDescending(c => c.Checkin);
             return View(await checkinCheckouts.ToListAsync());
         }
 
-        // GET: CheckinCheckouts1/Details/5
+        // GET: CheckInCheckOut/Details/5
         public async Task<ActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -37,19 +37,20 @@ namespace Attendance_System.Controllers
             return View(checkinCheckout);
         }
 
-        // GET: CheckinCheckouts1/Create
+        // GET: CheckInCheckOut/Create
         public ActionResult Create()
         {
             ViewBag.PhoneNumberID = new SelectList(db.People, "PhoneNumberID", "FullName");
+            ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Department1");
             return View();
         }
 
-        // POST: CheckinCheckouts1/Create
+        // POST: CheckInCheckOut/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device,Comment")] CheckinCheckout checkinCheckout)
+        public async Task<ActionResult> Create([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device,Comment,DepartmentID")] CheckinCheckout checkinCheckout)
         {
             if (ModelState.IsValid)
             {
@@ -60,10 +61,11 @@ namespace Attendance_System.Controllers
             }
 
             ViewBag.PhoneNumberID = new SelectList(db.People, "PhoneNumberID", "FullName", checkinCheckout.PhoneNumberID);
+            ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Department1", checkinCheckout.DepartmentID);
             return View(checkinCheckout);
         }
 
-        // GET: CheckinCheckouts1/Edit/5
+        // GET: CheckInCheckOut/Edit/5
         public async Task<ActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -76,15 +78,16 @@ namespace Attendance_System.Controllers
                 return HttpNotFound();
             }
             ViewBag.PhoneNumberID = new SelectList(db.People, "PhoneNumberID", "FullName", checkinCheckout.PhoneNumberID);
+            ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Department1", checkinCheckout.DepartmentID);
             return View(checkinCheckout);
         }
 
-        // POST: CheckinCheckouts1/Edit/5
+        // POST: CheckInCheckOut/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device,Comment")] CheckinCheckout checkinCheckout)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,PhoneNumberID,Checkin,Checkout,Purpose,Device,Comment,DepartmentID")] CheckinCheckout checkinCheckout)
         {
             if (ModelState.IsValid)
             {
@@ -93,10 +96,11 @@ namespace Attendance_System.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.PhoneNumberID = new SelectList(db.People, "PhoneNumberID", "FullName", checkinCheckout.PhoneNumberID);
+            ViewBag.DepartmentID = new SelectList(db.Departments, "ID", "Department1", checkinCheckout.DepartmentID);
             return View(checkinCheckout);
         }
 
-        // GET: CheckinCheckouts1/Delete/5
+        // GET: CheckInCheckOut/Delete/5
         public async Task<ActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -111,7 +115,7 @@ namespace Attendance_System.Controllers
             return View(checkinCheckout);
         }
 
-        // POST: CheckinCheckouts1/Delete/5
+        // POST: CheckInCheckOut/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(Guid id)

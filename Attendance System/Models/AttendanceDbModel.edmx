@@ -16,6 +16,14 @@
           <Property Name="Purpose" Type="nvarchar" MaxLength="560" />
           <Property Name="Device" Type="nvarchar" MaxLength="560" />
           <Property Name="Comment" Type="nvarchar" MaxLength="256" />
+          <Property Name="DepartmentID" Type="int" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Department" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="People">
           <Key>
@@ -37,6 +45,18 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <Association Name="FK_CheckinCheckout_Department1">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="CheckinCheckout" Type="Self.CheckinCheckout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CheckinCheckout">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CheckinCheckout_People">
           <End Role="People" Type="Self.People" Multiplicity="0..1" />
           <End Role="CheckinCheckout" Type="Self.CheckinCheckout" Multiplicity="*" />
@@ -51,8 +71,13 @@
         </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="CheckinCheckout" EntityType="Self.CheckinCheckout" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="People" EntityType="Self.People" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CheckinCheckout_Department1" Association="Self.FK_CheckinCheckout_Department1">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="CheckinCheckout" EntitySet="CheckinCheckout" />
+          </AssociationSet>
           <AssociationSet Name="FK_CheckinCheckout_People" Association="Self.FK_CheckinCheckout_People">
             <End Role="People" EntitySet="People" />
             <End Role="CheckinCheckout" EntitySet="CheckinCheckout" />
@@ -70,6 +95,11 @@
             <End Role="Person" EntitySet="People" />
             <End Role="CheckinCheckout" EntitySet="CheckinCheckouts" />
           </AssociationSet>
+          <EntitySet Name="Departments" EntityType="Model.Department" />
+          <AssociationSet Name="FK_CheckinCheckout_Department1" Association="Model.FK_CheckinCheckout_Department1">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="CheckinCheckout" EntitySet="CheckinCheckouts" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CheckinCheckout">
           <Key>
@@ -83,6 +113,8 @@
           <Property Name="Device" Type="String" MaxLength="560" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Person" Relationship="Model.FK_CheckinCheckout_People" FromRole="CheckinCheckout" ToRole="Person" />
           <Property Name="Comment" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <NavigationProperty Name="Department" Relationship="Model.FK_CheckinCheckout_Department1" FromRole="CheckinCheckout" ToRole="Department" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -117,6 +149,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Department1" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CheckinCheckouts" Relationship="Model.FK_CheckinCheckout_Department1" FromRole="Department" ToRole="CheckinCheckout" />
+        </EntityType>
+        <Association Name="FK_CheckinCheckout_Department1">
+          <End Type="Model.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="Model.CheckinCheckout" Role="CheckinCheckout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CheckinCheckout">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -126,6 +178,7 @@
           <EntitySetMapping Name="CheckinCheckouts">
             <EntityTypeMapping TypeName="Model.CheckinCheckout">
               <MappingFragment StoreEntitySet="CheckinCheckout">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Device" ColumnName="Device" />
                 <ScalarProperty Name="Purpose" ColumnName="Purpose" />
@@ -155,6 +208,14 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="Model.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Department1" ColumnName="Department" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

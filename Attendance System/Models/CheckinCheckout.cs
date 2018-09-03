@@ -21,7 +21,9 @@ namespace Attendance_System.Models
         public string Purpose { get; set; }
         public string Device { get; set; }
         public string Comment { get; set; }
+        public Nullable<int> DepartmentID { get; set; }
     
         public virtual Person Person { get; set; }
+        public virtual Department Department { get; set; }
     }
 }

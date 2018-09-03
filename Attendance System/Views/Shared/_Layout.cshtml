@@ -1,20 +1,33 @@
 ﻿<!DOCTYPE html>
-<html>
+<html class="boon-400">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/Content/style5.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="~/Content/css/all.css" rel="stylesheet" />
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/Icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Content/Icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Content/Icon/favicon-16x16.png">
+    <link rel="manifest" href="~/Content/Icon/site.webmanifest">
+    <link rel="mask-icon" href="~/Content/Icon/[]safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="~/Content/datatables.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/datatables.js"></script>
+
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body style="padding-top: 0px;">
+<body style="padding-top: 0px;" class="boon-400">
     <style>
-        * {
-            font-family: "BoonHome";
-        }
 
         a {
             color: white;
@@ -52,109 +65,136 @@
             letter-spacing: -1px;
         }
 
-        a,
-        a:visited {
-            color: #e34234;
-            transition: 0.25s;
+
+        .sidebar-link, .sidebar-link:visited {
+            text-decoration: none;
+            color: #e74c3c;
+            transition: 0.3s;
         }
 
-            a:hover,
-            a:focus {
-                color: #ba160c;
+            .sidebar-link:hover, .sidebar-link:focus {
+                text-decoration: none;
+                color: white;
             }
+
+        .sidebar-link {
+            color: #191919;
+        }
+
+        #sidebar .sidebar-header {
+            padding: 20px;
+            background: #e74c3c;
+        }
+
+        #sidebar {
+            min-width: 250px;
+            max-width: 250px;
+            background: #e8e8e8;
+            color: black;
+            transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+            transform-origin: bottom left;
+        }
+
+
+            #sidebar ul.components {
+                padding: 20px 0;
+                border-bottom: none;
+            }
+
+            #sidebar ul li.active > a, a[aria-expanded="true"] {
+                color: #fff;
+                background: #c0392b;
+            }
+
+        ul ul a {
+            font-size: 0.9em !important;
+            padding-left: 30px !important;
+            background: #e74c3c;
+        }
+
+        #sidebar ul li a:hover {
+            color: white;
+            background: #e74c3c;
+        }
     </style>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>*@
+        </div>*@
     <div class="wrapper">
         <!-- Sidebar Holder -->
-        <nav id="sidebar" style="background-color: black">
-            <div class="sidebar-header">
-                <h3>Bootstrap Sidebar</h3>
+        <nav id="sidebar">
+            <div class="sidebar-header" style="padding: 4px 16px">
+                <h3 style="color: white">ລະບົບຈັດການຄົນເຂົ້າອອກ</h3>
             </div>
-            <ul class="list-unstyled components">
-                <p>Dummy Heading</p>
+            <ul class="list-unstyled components" style="padding-top: 0">
+
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">ຄົນເຂົ້າ-ຄົນອອກ</a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">ຄົນນອກ</a>
-                        </li>
-                        <li>
-                            <a href="#">ຄົນພາຍໃນບໍລິສັດ</a>
-                        </li>
-                        <li>
-                            <a href="#">ແຂກ</a>
-                        </li>
-                    </ul>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="sidebar-link">ຄົນເຂົ້າ-ຄົນອອກ</a>
+                    @*<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-link">ຄົນເຂົ້າ-ຄົນອອກ</a>*@
+                    @*<ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li>
+                                <a href="#">ຄົນນອກ</a>
+                            </li>
+                            <li>
+                                <a href="#">ຄົນພາຍໃນບໍລິສັດ</a>
+                            </li>
+                            <li>
+                                <a href="#">ແຂກ</a>
+                            </li>
+                        </ul>*@
                 </li>
                 <li>
-                    <a href="#chekinchekouttime" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">ເວລາເຂົ້າ-ອອກ</a>
-                    <ul class="collapse list-unstyled" id="chekinchekouttime">
-                        <li>
-                            <a href="#">ເວລາເຂົ້າ</a>
-                        </li>
-                        <li>
-                            <a href="#">ເວລາອອກ</a>
-                        </li>                      
-                    </ul>
+                    @*<a href="#chekinchekouttime" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-link">ເວລາເຂົ້າ-ອອກ</a>*@
+                    <a href="#chekinchekouttime" data-toggle="collapse" aria-expanded="false" class="sidebar-link">ເວລາເຂົ້າ-ອອກ</a>
+                    @*<ul class="collapse list-unstyled" id="chekinchekouttime">
+                            <li>
+                                <a href="#">ເວລາເຂົ້າ</a>
+                            </li>
+                            <li>
+                                <a href="#">ເວລາອອກ</a>
+                            </li>
+                        </ul>*@
                 </li>
             </ul>
 
-            <ul class="list-unstyled components">
-
-            </ul>
-</nav>
+        </nav>
         <!-- Page Content Holder -->
-        <div id="content">
-            @*<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height:30px">
-                <div class="container-fluid">
-                    <div class="row" style="padding-top:-30px; margin-top:-19px">
-                        <button type="button" id="sidebarCollapse" class="navbar-btn">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
-                        
-                    </div>
-                </div>
-            </nav>*@
-            <div class="">
-                @RenderBody()
-            </div>
-            
+        <div id="content" class="container">
+            @RenderBody()
         </div>
-        
+
     </div>
-    
+
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    @*<!-- jQuery CDN - Slim version (=without AJAX) -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>*@
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('#sidebarCollapse').on('click', function () {
@@ -163,139 +203,9 @@
             });
         });
 
-        // ParticlesJS Config.
-        particlesJS("particles-js", {
-            "particles": {
-                "number": {
-                    "value": 80,
-                    "density": {
-                        "enable": true,
-                        "value_area": 700
-                    }
-                },
-
-
-                "color": {
-                    "value": "#ffffff"
-                },
-
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-
-                    "polygon": {
-                        "nb_sides": 5
-                    }
-                },
-
-
-                "opacity": {
-                    "value": 0.5,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-
-
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-
-
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#ffffff",
-                    "opacity": 0.4,
-                    "width": 1
-                },
-
-                "move": {
-                    "enable": true,
-                    "speed": 6,
-                    "direction": "none",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
-            },
-
-
-
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "grab"
-                    },
-
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    },
-
-                    "resize": true
-                },
-
-                "modes": {
-                    "grab": {
-                        "distance": 140,
-                        "line_linked": {
-                            "opacity": 1
-                        }
-                    },
-
-
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 8,
-                        "speed": 3
-                    },
-
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-
-                    "push": {
-                        "particles_nb": 4
-                    },
-
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
-            },
-
-
-
-            "retina_detect": true
-        });
     </script>
-    
+
+
 </body>
 </html>
 

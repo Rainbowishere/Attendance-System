@@ -14,7 +14,7 @@ p {
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
-    color: #999;
+    color: #fff;
 }
 
 a, a:hover, a:focus {
@@ -60,7 +60,8 @@ a, a:hover, a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #555;
+    /*background: #555;*/
+    background: #fff;
     color: #fff;
     transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
     transform-origin: bottom left;
@@ -71,15 +72,15 @@ a, a:hover, a:focus {
     transform: rotateY(100deg);
 }
 
-#sidebar .sidebar-header {
-    padding: 20px;
-    background: #6d7fcc;
-}
+    #sidebar .sidebar-header {
+        padding: 20px;
+        background: #2980b9;
+    }
 
-#sidebar ul.components {
-    padding: 20px 0;
-    border-bottom: 1px solid #47748b;
-}
+    #sidebar ul.components {
+        padding: 20px 0;
+        border-bottom: 1px solid #2980b9;
+    }
 
 #sidebar ul p {
     color: #fff;
@@ -91,15 +92,15 @@ a, a:hover, a:focus {
     font-size: 1.1em;
     display: block;
 }
-#sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
-}
+    #sidebar ul li a:hover {
+        color: #2980b9;
+        background: #fff;
+    }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
-}
+    #sidebar ul li.active > a, a[aria-expanded="true"] {
+        color: #fff;
+        background: #2980b9;
+    }
 
 
 a[data-toggle="collapse"] {
@@ -117,7 +118,7 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #2980b9;
 }
 
 ul.CTAs {
@@ -134,11 +135,11 @@ ul.CTAs a {
 
 a.download {
     background: #fff;
-    color: #7386D5;
+    color: #2980b9;
 }
 
 a.article, a.article:hover {
-    background: #6d7fcc !important;
+    background: #2980b9 !important;
     color: #fff !important;
 }
 
@@ -166,7 +167,8 @@ a.article, a.article:hover {
     height: 2px;
     margin: 0 auto;
     display: block;
-    background: #555;
+    /*background: #555;*/
+    background: white;
     transition: all 0.8s cubic-bezier(0.810, -0.330, 0.345, 1.375);
     transition-delay: 0.2s;
 }

@@ -1,0 +1,110 @@
+﻿@model IEnumerable<Attendance_System.Models.CheckinCheckout>
+
+@{
+    ViewBag.Title = "ລາຍຊື່ຄົນເຂົ້າອອກ";
+}
+
+<style>
+    .table {
+        border: .2px solid #dcdcdc
+    }
+</style>
+
+<div class="panel panel-primary">
+    <div class="panel-heading" style="padding-bottom: 0">
+        <div class="pull-left">
+            <button type="button" id="sidebarCollapse" class="navbar-btn" style="background-color:transparent; color:white !important; margin-top:1px; margin-right:4px;">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <p class="boon-700 text-center" style="font-size: 20px; margin-top: 6px; color: #f4f4f4"><i class="fas fa-address-card"></i> ລາຍຊື່ຄົນເຂົ້າ-ອອກ</p>
+    </div>
+
+    <div class="panel panel-body">
+            <a href="@Url.Action("Create", "CheckInCheckOut")" class="btn btn-default "><i class="glyphicon glyphicon-plus"></i> &nbsp; ເພີ່ມ</a>
+        <table class="table table-striped table-hover display" id="myTable">
+            <thead>
+                <tr style="background-color: #eb001f; color: whitesmoke">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Checkin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Checkout)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Purpose)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Device)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Comment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Person.FullName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Department.Department1)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr class="boon-400">
+                    <td class="boon-700" style="color: #27ae60">
+                        @string.Format("{0:HH:mm dd/MM/yyy}", item.Checkin)
+                    </td>
+                    @if (item.Checkout == null)
+                    {
+                        <td style="color: red" class="boon-700" >
+                            ຍັງບໍ່ໄດ້ລົງຊື່ອອກ
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="boon-700" style="color: #2980b9">
+                            @string.Format("{0:HH:mm dd/MM/yyy}", item.Checkout)
+                        </td>
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Purpose)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Device)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Person.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department.Department1)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "CheckInCheckOut", new { id=item.ID })" class="btn btn-default "><i class="fas fa-id-card"></i> Details</a>
+                        
+                        <a href="@Url.Action("Delete", "CheckInCheckOut", new { id=item.ID })" class="btn btn-default"><i class="fas fa-id-card"></i> Details</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+
+</script>

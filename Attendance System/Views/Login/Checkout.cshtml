@@ -17,11 +17,12 @@
     <input name="Checkin" value="@Model.Checkin" hidden />
     <input name="Purpose" value="@Model.Purpose" hidden />
     <input name="Device" value="@Model.Device" hidden />
+    <input name="Device" value="@Model.Department.ID" hidden />
     <div class="row">
 
         <div class="col-xs-5">
             <div class="form-group">
-                <label class="control-label" style="font-weight:bold">ຊື່ ແລະ ນາມສະກຸນ:</label>
+                <label class="control-label" style="font-weight:bold"><i class="fa fa-user" style="width: 20px"></i> ຊື່ ແລະ ນາມສະກຸນ:</label>
             </div>
         </div>
         <div class="col-xs-7">
@@ -33,7 +34,7 @@
     <div class="row">
         <div class="col-xs-5">
             <div class="form-group">
-                <label class="control-label" style="font-weight:bold">ເບີໂທ:</label>
+                <label class="control-label" style="font-weight:bold"><i class="fa fa-phone" style="width: 20px"></i> ເບີໂທ:</label>
             </div>
         </div>
         <div class="col-xs-7">
@@ -45,7 +46,7 @@
     <div class="row">
         <div class="col-xs-5">
             <div class="form-group">
-                <label class="control-label" style="font-weight:bold">ມາຈາກ:</label>
+                <label class="control-label" style="font-weight:bold"><i class="fa fa-map-marker" style="width: 20px"></i> ມາຈາກ:</label>
             </div>
         </div>
         <div class="col-xs-7">
@@ -62,7 +63,7 @@
         <div class="row">
             <div class="col-xs-5">
                 <div class="form-group">
-                    <label class="control-label" style="font-weight:bold">ລະຫັດພະນັກງານ:</label>
+                    <label class="control-label" style="font-weight:bold"><i class="fa fa-id-badge" style="width: 20px"></i> ລະຫັດພະນັກງານ:</label>
                 </div>
             </div>
             <div class="col-xs-7">
@@ -77,11 +78,22 @@
     <div class="row">
         <div class="col-xs-5">
             <div class="form-group">
-                <label class="control-label" style="font-weight:bold">ຈຸດປະສົງ:</label>
+                <label class="control-label" style="font-weight:bold"><i class="fa fa-question-circle" style="width: 20px"></i> ຈຸດປະສົງ:</label>
             </div>
         </div>
         <div class="col-xs-7">
             <label class="control-label">@Model.Purpose</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-5">
+            <div class="form-group">
+                <label class="control-label" style="font-weight:bold"><i class="fa fa-building" style="width: 20px"></i> ຜະແຫນກ:</label>
+            </div>
+        </div>
+        <div class="col-xs-7">
+            <label class="control-label">@Model.Department.Department1</label>
         </div>
     </div>
     if (!string.IsNullOrEmpty(Model.Device))
@@ -89,7 +101,7 @@
         <div class="row">
             <div class="col-xs-5">
                 <div class="form-group">
-                    <label class="control-label" style="font-weight:bold">ອຸປະກອນທີ່ນຳເຂົ້າມາ:</label>
+                    <label class="control-label" style="font-weight:bold"><i class="fa fa-laptop" style="width: 20px"></i> ອຸປະກອນທີ່ນຳເຂົ້າມາ:</label>
                 </div>
             </div>
             <div class="col-xs-7">
@@ -100,21 +112,21 @@
     <div class="row">
         <div class="col-xs-5">
             <div class="form-group">
-                <label class="control-label" style="font-weight:bold">ເວລາເຂົ້າ:</label>
+                <label class="control-label" style="font-weight:bold"><i class="fa fa-clock" style="width: 20px"></i> ເວລາເຂົ້າ:</label>
             </div>
         </div>
         <div class="col-xs-7">
-            <label class="control-label">@String.Format("{0:HH:mm ວັນທີ: dd/MM/yyyy}", Model.Checkin)</label>
+            <label class="control-label">@String.Format("{0:HH:mm dd/MM/yyyy}", Model.Checkin)</label>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-5">
             <div class="form-group">
-                <label class="control-label" style="font-weight:bold">ຫມາຍເຫດ:</label>
+                <label class="control-label" style="font-weight:bold"><i class="fa fa-comment" style="width: 20px"></i> ຫມາຍເຫດ:</label>
             </div>
         </div>
         <div class="col-xs-7">
-            <textarea rows="3" name="Comment" class="form-control" maxlength="256" style="margin-bottom: 12px" />
+            <textarea rows="3" name="Comment" class="form-control" maxlength="256" style="margin-bottom: 12px">@Model.Comment</textarea>
         </div>
     </div>
     <div class="modal-footer ">

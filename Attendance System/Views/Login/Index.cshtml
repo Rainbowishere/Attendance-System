@@ -19,39 +19,45 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="theme-color" content="#ffffff">
 
+    <link href="~/Content/boon-all.css" rel="stylesheet" />
+
     <!-- JParticles -->
     <link href="~/Content/JParticles/css/style.css" rel="stylesheet" />
 
 
-    <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/html5-qrcode.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/style.css" rel="stylesheet" />
     <link href="~/Content/css/all.css" rel="stylesheet" />
     <script src="~/Scripts/js/all.js"></script>
+    <title>ລະບົບເກັບກໍາລາຍຊື່</title>
 
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <title>Index</title>
 </head>
-<body style="background-color:transparent">
+<body class="boon-500" style="background-color:#ecf0f1">
     <style>
         .vertical-center {
             /*min-height: 100%; /* Fallback for browsers do NOT support vh unit */
             /* min-height: 100%;*/ /* These two lines are counted as one :-)       */
-            display: flex;
+            display: block;
             position: absolute;
             top: 0;
             bottom: 0;
             left: 0;
             right: 0;
+
+
+
             margin: 0;
+            margin-top: 60px;
             padding: 0;
-            margin-top: 60px
-            /*align-items: center;*/
+            height: auto;
         }
 
         .numpad {
@@ -70,9 +76,11 @@
             padding: 2px;
         }
 
-        * {
+        /** {
             font-family: BoonHome;
-        }
+        }*/
+
+        
 
         select.btn-mini {
             height: auto;
@@ -117,22 +125,32 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            /*margin-bottom: 100px;*/
+
         }
 
             #instance .demo {
                 width: 100%;
                 height: 100%;
-                background-color: #ecf0f1;
+                background-color: #eeeeee;
                 margin: 0;
-                padding: 0;
                 border: none;
+                padding: 0;
+
+                display: -webkit-flex;
+                display: flex;
+                -webkit-flex-direction: column;
+                flex-direction: column;
             }
 
         body {
             padding: 0;
-            margin: 0
+            margin: 0;
+            
         }
+
+
+
+
     </style>
 
     <div id="instance">
@@ -140,7 +158,7 @@
 
     </div>
 
-    <div class=" vertical-center" style="background-color: transparent !important;">
+    <div class=" vertical-center" style="background-color: transparent !important; ">
         <div class="container">
 
             <div class="panel panel-default">
@@ -157,9 +175,10 @@
                                         <div class="scanner-laser laser-leftTop" style="opacity: 0.5;"></div>
 
                                     </div>
-                                    <div class="col-xs-12 text-center">
-                                        <div class="form-group">
-                                            <label class="control-label">ເລືອກກ້ອງ:</label>
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <i class="fas fa-camera" style="font-size: 26px; margin-bottom: -6px" aria-hidden="true"></i>
+                                            <span> &nbsp; </span>
                                             <select class="form-control" id="camera-select"></select>
                                         </div>
                                     </div>
@@ -219,7 +238,7 @@
                             <div class="panel panel-primary">
                                 <div class="panel-body">
 
-                                    <input style="margin: 0;" type="tel" class="form-control input-lg text-right" placeholder="ກະລຸນາໃສ່ເບີໂທຂອງທ່ານ" id="idStaff" />
+                                    <input style="margin: 0; font-weight: bolder" type="tel" class="form-control input-lg text-center" placeholder="ກະລຸນາໃສ່ເບີໂທຂອງທ່ານ" id="idStaff" />
                                     <div class="" style="padding:8px 14px;">
                                         <div class="row text-center">
                                             <div class="col-xs-4">
@@ -271,25 +290,25 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <button class="btn btn-success btn-block" data-toggle="modal" data-target="#myModal" id="loginButton" onclick="LoadEmployee();">ເຂົ້າລະບົບ</button>
+                                            <button style="margin-left: 0; font-size: medium" class="btn btn-danger btn-block" data-toggle="modal" data-target="#myModal" id="loginButton" onclick="LoadEmployee();"> <i class="fas fa-sign-in-alt"></i> ເຂົ້າລະບົບ</button>
+                                        </div>
 
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                                <div class="modal-dialog modal-sm" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                            <h4 class="modal-title" id="myModalLabel" style="font-weight:bold"><spam id="modalTitle">ກຳລັງໂຫລດ...ກະລຸນາລໍຖ້າ</spam></h4>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog modal-sm" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header" >
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title" id="myModalLabel" style="font-weight:bold"><spam id="modalTitle">ກຳລັງໂຫລດ...ກະລຸນາລໍຖ້າ</spam></h4>
 
-                                                        </div>
-                                                        <div class="modal-body" id="LoadDataEmployee" style="padding-bottom: 0">
-
-                                                        </div>
-                                                        @*<div class="modal-footer">
-                                                                <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
-                                                                <button type="submit" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
-                                                            </div>*@
                                                     </div>
+                                                    <div class="modal-body" id="LoadDataEmployee" style="padding-bottom: 0">
+
+                                                    </div>
+                                                    @*<div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
+                        <button type="submit" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
+                    </div>*@
                                                 </div>
                                             </div>
                                         </div>
@@ -300,28 +319,33 @@
                     </div>
                     @if (Model.FirstOrDefault() != null)
                     {
+                        
                         <div class="row">
                             <div class="col-xs-12">
-                                <h4 style="font-weight: bold">ລາຍຊື່ຄົນທີ່ຍັງບໍ່ໄດ້ລົງຊື່ອອກ</h4>
-                                <table class="table table-bordered table-responsive table-striped" id="myTable">
-                                    <tr>
+                                <p class="text-center" style="font-weight: bold; color: #2e3192; font-size: large"><i class="fa fa-address-card" aria-hidden="true"></i> ລາຍຊື່ຄົນທີ່ຍັງບໍ່ໄດ້ລົງຊື່ອອກ</p>
+                                <table class="table table-bordered table-responsive table-striped table-condensed table-hover" id="myTable">
+
+                                    <tr style="background-color: #eb001f; color: whitesmoke">
                                         <th>
-                                            ເວລາເຂົ້າ
+                                            <i class="fas fa-clock"></i> ເວລາເຂົ້າ
                                         </th>
                                         <th>
-                                            ຊື່ ແລະ ນາມສະກຸນ
+                                            <i class="fas fa-user"></i> ຊື່ ແລະ ນາມສະກຸນ
                                         </th>
                                         <th>
-                                            ເບີໂທ
+                                            <i class="fas fa-phone"></i> ເບີໂທ
                                         </th>
                                         <th>
-                                            ຈຸດປະສົງ
+                                            <i class="fas fa-question-circle"></i> ຈຸດປະສົງ
                                         </th>
                                         <th>
-                                            ອຸປະກອນທີ່ນຳເຂົ້າມາ
+                                            <i class="fas fa-building"></i> ຜະແຫນກ
                                         </th>
                                         <th>
-                                            ຫມາຍເຫດ
+                                            <i class="fas fa-laptop"></i> ອຸປະກອນທີ່ນຳເຂົ້າມາ
+                                        </th>
+                                        <th>
+                                            <i class="fas fa-comment"></i> ຫມາຍເຫດ
                                         </th>
                                     </tr>
 
@@ -341,6 +365,9 @@
                                             @Html.DisplayFor(modelItem => item.Purpose)
                                         </td>
                                         <td>
+                                            @Html.DisplayFor(modelItem => item.Department.Department1)
+                                        </td>
+                                        <td>
                                             @Html.DisplayFor(modelItem => item.Device)
                                         </td>
                                         <td>
@@ -358,7 +385,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="~/Scripts/webcodecamjs/jquery.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/webcodecamjs/jquery.js"></script>*@
     <script type="text/javascript" src="~/Scripts/webcodecamjs/qrcodelib.js"></script>
     <script type="text/javascript" src="~/Scripts/webcodecamjs/webcodecamjs.js"></script>
     <script type="text/javascript" src="~/Scripts/webcodecamjs/main.js"></script>
@@ -487,11 +514,15 @@
         // JParticles
         bind('#instance', function () {
             return new JParticles.particle('#instance .demo', {
-                color: '#cd1e2b',
+                color: '#2e3192',
                 range: 5000,
-                proximity: 80,
+                proximity: 90,
                 maxSpeed: 0.3
             });
+        });
+
+        $('body').on('hidden.bs.modal', '#myModal', function () {
+            alert('Hello');
         });
     </script>
 </body>
