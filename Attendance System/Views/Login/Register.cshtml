@@ -1,130 +1,142 @@
-﻿@using (Html.BeginForm("Register", "Login", FormMethod.Post))
+﻿<script src="~/Scripts/qrcode.min.js"></script>
+
+@using (Html.BeginForm("Register", "Login", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <style>
         .modal-sm {
             width: 500px;
         }
+
+        #qrcode {
+            width: 128px;
+            height: 128px;
+            /*margin-top: 15px;*/
+        }
     </style>
 
-    <div class="row">
-        <div class="col-xs-5">
-            <div class="form-group">
-                <label class="control-label" style="font-weight:bold"><i class="fa fa-user" style="width: 20px"></i> ຊື່ ແລະ ນາມສະກຸນ:</label>
+    <div id="yourDiv">
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label class="control-label" style="font-weight:bold"><i class="fa fa-user" style="width: 20px"></i> ຊື່ ແລະ ນາມສະກຸນ:</label>
+                </div>
+            </div>
+            <div class="col-xs-7">
+                <div class="form-group">
+                    <input type="text" name="FullName" class="form-control" autocomplete="off" required />
+                </div>
             </div>
         </div>
-        <div class="col-xs-7">
-            <div class="form-group">
-                <input type="text" name="FullName" class="form-control" autocomplete="off" required/>
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label class="control-label" style="font-weight:bold"><i class="fa fa-phone" style="width: 20px"></i> ເບີໂທ:</label>
+                </div>
+            </div>
+            <div class="col-xs-7">
+                <div class="form-group">
+                    <input type="tel" name="PhoneNumberID" id="PhoneNumberID" value="@ViewBag.Phone" class="form-control" required autocomplete="off" />
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-5">
-            <div class="form-group">
-                <label class="control-label" style="font-weight:bold"><i class="fa fa-phone" style="width: 20px"></i> ເບີໂທ:</label>
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label class="control-label" style="font-weight:bold"><i class="fa fa-id-badge" style="width: 20px"></i> ລະຫັດພະນັກງານ:</label>
+                </div>
+            </div>
+            <div class="col-xs-7">
+                <div class="form-group">
+                    <input type="text" name="EmployeeID" autocomplete="off" class="form-control" />
+                </div>
             </div>
         </div>
-        <div class="col-xs-7">
-            <div class="form-group">
-                <input type="tel" name="PhoneNumberID" value="@ViewBag.Phone" class="form-control" required autocomplete="off"/>
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label class="control-label" style="font-weight:bold"><i class="fa fa-question-circle" style="width: 20px"></i> ຈຸດປະສົງ:</label>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-5">
-            <div class="form-group">
-                <label class="control-label" style="font-weight:bold"><i class="fa fa-id-badge" style="width: 20px"></i> ລະຫັດພະນັກງານ:</label>
-            </div>
-        </div>
-        <div class="col-xs-7">
-            <div class="form-group">
-                <input type="text" name="EmployeeID" autocomplete="off" class="form-control" />
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-5">
-            <div class="form-group">
-                <label class="control-label" style="font-weight:bold"><i class="fa fa-question-circle" style="width: 20px"></i> ຈຸດປະສົງ:</label>
-            </div>
-        </div>
-        <div class="col-xs-7">
-            <select class="has_other form-control" data-other="#Purpose" name="Purpose" data-other-text="ອື່ນໆ...">
-                <option value="ຝຶກງານ">ຝຶກງານ</option>
-                <option value="ສົ່ງເອກະສານ">ສົ່ງເອກະສານ</option>
-                <option value="ປະຊຸມ">ປະຊຸມ</option>
-                <option value="ມາເອົາຄອມທີ່ແປງ">ມາເອົາຄອມທີ່ແປງ</option>
-                <option value="ພົວພັນວຽກ">ພົວພັນວຽກ</option>
-                <option value="ເອົາຄອມມາແປງ">ເອົາຄອມມາແປງ</option>
-                <option value="ອື່ນໆ...">ອື່ນໆ...</option>
-            </select>
-            <input style="margin: 4px 0" type="text" id="Purpose" class="form-control" name="Purpose2" placeholder="ກະລຸນາລະບຸຈຸດປະສົງຂອງທ່ານ" autocomplete="off"/>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-5">
-            <div class="form-group">
-                <label class="control-label" style="font-weight:bold"><i class="fa fa-building" style="width: 20px"></i> ຜະແຫນກ:</label>
-            </div>
-        </div>
-        <div class="col-xs-7">
-            @Html.DropDownList("DepartmentID", null, htmlAttributes: new { @class = "form-control" })
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-5">
-            <div class="form-group">
-                <label class="control-label" style="font-weight:bold"><i class="fa fa-laptop" style="width: 20px"></i> ອຸປະກອນທີ່ນຳເຂົ້າມາ:</label>
-            </div>
-        </div>
-        <div class="col-xs-7">
-            <select class="has_other form-control" data-other="#Device" name="Device" data-other-text="ອື່ນໆ...">
-                <option value="">ບໍ່ມີ</option>
-                <option value="Laptop">Laptop</option>
-                <option value="ເອກະສານ">ເອກະສານ</option>
-                <option value="PC">PC</option>
-                <option value="Tablet">Tablet</option>
-                <option value="ອື່ນໆ...">ອື່ນໆ...</option>
-            </select>
-            <input style="margin: 4px 0" type="text" id="Device" class="form-control" name="Device2" placeholder="ກະລຸນາລະບຸອຸປະກອນຂອງທ່ານ" autocomplete="off"/>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-5">
-            <div class="form-group">
-                <label class="control-label" style="font-weight:bold"><i class="fa fa-map-marker" style="width: 20px"></i> ມາຈາກ:</label>
-            </div>
-        </div>
-        <div class="col-xs-7">
-            <div class="form-group">
-                <input type="text" name="Source" class="form-control" required autocomplete="off"/>
+            <div class="col-xs-7">
+                <select class="has_other form-control" data-other="#Purpose" name="Purpose" data-other-text="ອື່ນໆ...">
+                    <option value="ຝຶກງານ">ຝຶກງານ</option>
+                    <option value="ສົ່ງເອກະສານ">ສົ່ງເອກະສານ</option>
+                    <option value="ປະຊຸມ">ປະຊຸມ</option>
+                    <option value="ມາເອົາຄອມທີ່ແປງ">ມາເອົາຄອມທີ່ແປງ</option>
+                    <option value="ພົວພັນວຽກ">ພົວພັນວຽກ</option>
+                    <option value="ເອົາຄອມມາແປງ">ເອົາຄອມມາແປງ</option>
+                    <option value="ອື່ນໆ...">ອື່ນໆ...</option>
+                </select>
+                <input style="margin: 4px 0" type="text" id="Purpose" class="form-control" name="Purpose2" placeholder="ກະລຸນາລະບຸຈຸດປະສົງຂອງທ່ານ" autocomplete="off" />
             </div>
         </div>
 
-    </div>
-
-    <div class="row">
-        <div class="col-xs-5">
-            <div class="form-group">
-                <label class="control-label" style="font-weight:bold"><i class="fa fa-comment" style="width: 20px"></i> ຫມາຍເຫດ:</label>
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label class="control-label" style="font-weight:bold"><i class="fa fa-building" style="width: 20px"></i> ຜະແຫນກ:</label>
+                </div>
             </div>
-        </div>
-        <div class="col-xs-7">
-            <div class="form-group">
-                <textarea rows="3" name="Comment" class="form-control" maxlength="256" style="margin-bottom: 12px" />
+            <div class="col-xs-7">
+                @Html.DropDownList("DepartmentID", null, htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label class="control-label" style="font-weight:bold"><i class="fa fa-laptop" style="width: 20px"></i> ອຸປະກອນທີ່ນຳເຂົ້າມາ:</label>
+                </div>
+            </div>
+            <div class="col-xs-7">
+                <select class="has_other form-control" data-other="#Device" name="Device" data-other-text="ອື່ນໆ...">
+                    <option value="">ບໍ່ມີ</option>
+                    <option value="Laptop">Laptop</option>
+                    <option value="ເອກະສານ">ເອກະສານ</option>
+                    <option value="PC">PC</option>
+                    <option value="Tablet">Tablet</option>
+                    <option value="ອື່ນໆ...">ອື່ນໆ...</option>
+                </select>
+                <input style="margin: 4px 0" type="text" id="Device" class="form-control" name="Device2" placeholder="ກະລຸນາລະບຸອຸປະກອນຂອງທ່ານ" autocomplete="off" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label class="control-label" style="font-weight:bold"><i class="fa fa-map-marker" style="width: 20px"></i> ມາຈາກ:</label>
+                </div>
+            </div>
+            <div class="col-xs-7">
+                <div class="form-group">
+                    <input type="text" name="Source" class="form-control" required autocomplete="off" />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="form-group">
+                    <label class="control-label" style="font-weight:bold"><i class="fa fa-comment" style="width: 20px"></i> ຫມາຍເຫດ:</label>
+                </div>
+            </div>
+            <div class="col-xs-7">
+                <div class="form-group">
+                    <textarea rows="3" name="Comment" class="form-control" maxlength="256" style="margin-bottom: 12px" />
+                </div>
+            </div>
+        </div>
+
+        <div id="qrcode" hidden></div>
     </div>
+
     <div class="modal-footer ">
         <button type="button" class="btn btn-default" data-dismiss="modal">ຍົກເລີກ</button>
-        <button type="submit" value="Register" class="btn btn-success"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
+        <button type="submit" value="Register" class="btn btn-success" onclick="makeCode()"><i class="fas fa-sign-in-alt"></i>&nbsp;ລົງຊື່ເຂົ້າໃຊ້</button>
     </div>
-
+    
     <script>
         // handle cases where dropdown's have an "other" option
         $.each($("select.has_other").change(function () {
@@ -158,8 +170,35 @@
 
         });
 
-        
+        var qrcode = new QRCode("qrcode", {
+            width: 128,
+            height: 128,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
 
+        function makeCode() {
+            var elText = document.getElementById("PhoneNumberID");
+
+            if (!elText.value) {
+                //alert("Input a text");
+                //elText.focus();
+                return;
+            }
+
+            qrcode.makeCode(elText.value);
+        }
+
+
+        
+        //function print() {
+        //    var canvas = html2canvas($("#yourDiv");
+        //    var img = canvas.toDataUrl("image/png");
+        //    doc = new jsPDF("px", "a4");
+        //    doc.addImage(img, "png", 50, 50);
+        //    doc.save("demo.pdf");
+        //}
 
     </script>
 

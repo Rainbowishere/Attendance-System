@@ -24,7 +24,9 @@ namespace Attendance_System
                       "~/Scripts/respond.js",
                       "~/Scripts/html5-qrcode.min.js",
                       "~/Scripts/datatables.js",
-                      "~/Scripts/js/all.js"));
+                      "~/Scripts/js/all.js",
+                      "~/Scripts/qrcode.min.js",
+                      "~/Scripts/jquery.table2excel.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/lumen.bootstrap.min.css",

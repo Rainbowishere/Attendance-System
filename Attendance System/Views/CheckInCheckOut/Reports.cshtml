@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Attendance_System.Models.CheckinCheckout>
+﻿<script src="~/Scripts/jquery.table2excel.js"></script>
+
+@model IEnumerable<Attendance_System.Models.CheckinCheckout>
 
 @{
     ViewBag.Title = "ລາຍຊື່ຄົນເຂົ້າອອກ";
@@ -26,28 +28,37 @@
     <div class="panel panel-body">
         <div class="row">
             <div class="col-xs-12">
-                <div class="pull-right">
-                    <div class="form-inline">
-                        <div class="form-group">
-                            <label class="control-label">ເລີ່ມ</label>
-                            <input class="form-control" type="date" name="startdate" value="@string.Format("{0:yyyy-MM-dd}", DateTime.Now)" />
-                        </div>
+                @using (Html.BeginForm("Reports", "CheckInCheckOut", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="pull-right">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label class="control-label">ເລີ່ມ</label>
+                                <input class="form-control" type="date" name="startdate" value="@string.Format("{0:yyyy-MM-dd}", DateTime.Now)" />
+                            </div>
 
-                        <span>&nbsp;</span>
+                            <span>&nbsp;</span>
 
-                        <div class="form-group">
-                            <label class="control-label">ຮອດ</label>
-                            <input class="form-control" type="date" name="startdate" value="@string.Format("{0:yyyy-MM-dd}", DateTime.Now)" />
-                        </div>
+                            <div class="form-group">
+                                <label class="control-label">ຮອດ</label>
+                                <input class="form-control" type="date" name="enddate" value="@string.Format("{0:yyyy-MM-dd}", DateTime.Now)" />
+                            </div>
 
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="ຄົ້ນຫາ">
-                            <span class="input-group-btn">
-                                <a style="height:38px" class="btn btn-primary"> <i class="fa fa-search"></i> </a>
-                            </span>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="ຄົ້ນຫາ" name="search">
+                                <span class="input-group-btn">
+                                    <button style="height:38px" class="btn btn-primary" type="submit"> <i class="fa fa-search"></i> </button>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
+            </div>
+
+            <div class="row">
+                @ViewBag.SearchStartDate
+                @ViewBag.SearchEndDate
             </div>
 
 
@@ -125,6 +136,10 @@
                     </tbody>
 
                 </table>
+
+                <button onclick="exportToExcel()">
+                    Export to Excel
+                </button>
             </div>
         </div>
     </div>
@@ -135,6 +150,30 @@
     $(document).ready(function () {
         //$('#myTable').DataTable();
     });
-    
 
+    
 </script>
+
+@section scripts{
+    
+    <script>
+        function exportToExcel() {
+            //$("#myTable").table2excel({
+            //    name: "Table2Excel",
+            //    filename: "myFileName",
+            //    fileext: ".xls"
+            //});
+
+            $("#myTable").table2excel({
+                exclude: ".noExl",
+                name: "Excel Document Name",
+                filename: "myFileName" + new Date().toISOString().replace(/[\-\:\.]/g, ""),
+                fileext: ".xls",
+                exclude_img: true,
+                exclude_links: true,
+                exclude_inputs: true
+            });
+        }
+    </script>
+    
+    }
