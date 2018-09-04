@@ -388,6 +388,7 @@
     <Content Include="Views\CheckInCheckOut\Details.cshtml" />
     <Content Include="Views\CheckInCheckOut\Edit.cshtml" />
     <Content Include="Views\CheckInCheckOut\Index.cshtml" />
+    <Content Include="Views\CheckInCheckOut\Reports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

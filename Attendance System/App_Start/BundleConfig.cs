@@ -23,13 +23,16 @@ namespace Attendance_System
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                       "~/Scripts/html5-qrcode.min.js",
-                      "~/Scripts/datatables.js"));
+                      "~/Scripts/datatables.js",
+                      "~/Scripts/js/all.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/lumen.bootstrap.min.css",
+                      "~/Content/css/all.css",
                       "~/Content/site.css",
                       "~/Content/boon-all.css",
-                      "~/Content/datatables.css"));
+                      "~/Content/datatables.css"
+                      ));
         }
     }
 }

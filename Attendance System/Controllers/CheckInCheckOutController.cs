@@ -126,6 +126,24 @@ namespace Attendance_System.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: CheckInCheckOut
+        public async Task<ActionResult> Reports()
+        {
+            var checkinCheckouts = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).OrderByDescending(c => c.Checkin);
+            return View(await checkinCheckouts.ToListAsync());
+        }
+
+        // POST: CheckInCheckOut/Delete/5
+        [HttpPost, ActionName("Reports")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Reports(Guid id)
+        {
+            CheckinCheckout checkinCheckout = await db.CheckinCheckouts.FindAsync(id);
+            db.CheckinCheckouts.Remove(checkinCheckout);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
