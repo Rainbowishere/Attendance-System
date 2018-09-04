@@ -31,22 +31,84 @@
                 @using (Html.BeginForm("Reports", "CheckInCheckOut", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
+
+                    @*<div class="container">
+                <div class='col-md-5'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker6'>
+                            <input type='text' value="@DateTime.Now.ToShortDateString() 00:00" name="startdate" class="form-control"/>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-md-5'>
+                    <div class="form-group">
+                        <div class='input-group date' id='datetimepicker7'>
+                            <input type='text' value="@DateTime.Now.ToShortDateString() 00:00" name="enddate" class="form-control" />
+                            <span class="input-group-addon btn btn-default">
+                                <span class="fas fa-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+                
+
                     <div class="pull-right">
                         <div class="form-inline">
+
+                            <label>
+                                <input type="checkbox" id="isNotSignOut" name="isNotSignOut" value="true">
+                                ຍັງບໍ່ໄດ້ລົງຊື່ອອກ
+                            </label>
+
+                            <select class="form-control" name="people">
+                                <option value="all">ທັງຫມົດ</option>
+                                <option value="employee">ພະນັກງານ</option>
+                                <option value="other">ບຸກຄົນພາຍນອກ</option>
+                                
+                            </select>
+
+                            <label class="control-label">ເລີ່ມ &nbsp;</label>
                             <div class="form-group">
-                                <label class="control-label">ເລີ່ມ</label>
-                                <input class="form-control" type="date" name="startdate" value="@string.Format("{0:yyyy-MM-dd}", DateTime.Now)" />
+                                <div class='input-group date' id='datetimepicker6'>
+                                    <input type='text' value="@ViewBag.SearchStartDate" name="startdate" class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="fas fa-calendar-alt"></span>
+                                    </span>
+                                </div>
                             </div>
 
-                            <span>&nbsp;</span>
+                            <span> &nbsp; </span>
 
+                            <label class="control-label">ຮອດ &nbsp;</label>
                             <div class="form-group">
-                                <label class="control-label">ຮອດ</label>
-                                <input class="form-control" type="date" name="enddate" value="@string.Format("{0:yyyy-MM-dd}", DateTime.Now)" />
+                                <div class='input-group date' id='datetimepicker7'>
+                                    <input type='text' value="@ViewBag.SearchEndDate" name="enddate" class="form-control" />
+                                    <span class="input-group-addon btn btn-default">
+                                        <span class="fas fa-calendar"></span>
+                                    </span>
+                                </div>
                             </div>
+
+
+                            @*<div class="form-group">
+            <label class="control-label">ເລີ່ມ</label>
+            <input class="form-control" type="date" name="startdate" value="@string.Format("{0:yyyy-MM-dd}", DateTime.Now)" />
+        </div>
+
+        <span>&nbsp;</span>
+
+        <div class="form-group">
+            <label class="control-label">ຮອດ</label>
+            <input class="form-control" type="date" name="enddate" value="@string.Format("{0:yyyy-MM-dd}", DateTime.Now)" />
+        </div>*@
 
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="ຄົ້ນຫາ" name="search">
+                                <input type="text" class="form-control" placeholder="ຄົ້ນຫາ" value="@ViewBag.SearchString" name="search">
                                 <span class="input-group-btn">
                                     <button style="height:38px" class="btn btn-primary" type="submit"> <i class="fa fa-search"></i> </button>
                                 </span>
@@ -56,13 +118,12 @@
                 }
             </div>
 
-            <div class="row">
-                @ViewBag.SearchStartDate
-                @ViewBag.SearchEndDate
-            </div>
+           
 
 
             <div class="col-xs-12" style="margin-top: 16px">
+                <div class="row" style="margin-bottom: 12px"><div class="text-center">ຜົນການຄົ້ນຫາຂອງການລົງຊື່ເຂົ້າແຕ່ເວລາ @string.Format("{0:HH:mm dd/MM/yyy}", ViewBag.SearchStartDate) ເຖີງ @string.Format("{0:HH:mm dd/MM/yyy}", ViewBag.SearchEndDate)</div></div>
+
                 <table class="table table-striped table-hover display" id="myTable">
                     <thead>
                         <tr style="background-color: #eb001f; color: whitesmoke">
@@ -78,6 +139,9 @@
                             <th>
 
                                 <i class="fas fa-phone"></i> ເບີໂທ
+                            </th>
+                            <th>
+                                <i class="fas fa-id-badge"></i> ລະຫັດພະນັກງານ
                             </th>
                             <th>
                                 <i class="fas fa-question-circle"></i> ຈຸດປະສົງ
@@ -120,6 +184,9 @@
                                     @Html.DisplayFor(modelItem => item.Person.PhoneNumberID)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.Person.EmployeeID)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.Purpose)
                                 </td>
                                 <td>
@@ -137,26 +204,57 @@
 
                 </table>
 
-                <button onclick="exportToExcel()">
-                    Export to Excel
+                <button onclick="exportToExcel()" class="btn btn-success">
+                    <i class="fa fa-save"></i> &nbsp; ດາວໂຫລດເປັນຟາຍ Excel
                 </button>
             </div>
         </div>
     </div>
 </div>
 
+
+
 <script type="text/javascript">
 
     $(document).ready(function () {
         //$('#myTable').DataTable();
+
+       
+
     });
 
-    
+
+    $(function () {
+        $('#datetimepicker6').datetimepicker({
+            locale: 'th',
+            icons: {
+                time: "fas fa-clock",
+                date: "fa fa-calendar",
+                up: "fas fa-arrow-up",
+                down: "fas fa-arrow-down"
+            }
+        });
+        $('#datetimepicker7').datetimepicker({
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#datetimepicker6").on("dp.change", function (e) {
+            $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+        });
+        $("#datetimepicker7").on("dp.change", function (e) {
+            $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+
 </script>
 
 @section scripts{
-    
+
+
     <script>
+
+
+        
+
         function exportToExcel() {
             //$("#myTable").table2excel({
             //    name: "Table2Excel",
@@ -166,14 +264,16 @@
 
             $("#myTable").table2excel({
                 exclude: ".noExl",
-                name: "Excel Document Name",
+                name: "ປະຫວັດຄົນເຂົ້າອອກ",
                 filename: "checkin-checkout" + new Date().toISOString().replace(/[\-\:\.]/g, ""),
-                fileext: ".xlsx",
+                fileext: ".xls",
                 exclude_img: true,
                 exclude_links: true,
                 exclude_inputs: true
             });
         }
+
+
     </script>
-    
-    }
+
+}

@@ -43,9 +43,13 @@
                                 <i class="fas fa-user"></i> ຊື່ ແລະ ນາມສະກຸນ
                             </th>
                             <th>
-
                                 <i class="fas fa-phone"></i> ເບີໂທ
                             </th>
+
+                            <th>
+                                <i class="fas fa-id-badge"></i> ລະຫັດພະນັກງານ
+                            </th>
+
                             <th>
                                 <i class="fas fa-question-circle"></i> ຈຸດປະສົງ
                             </th>
@@ -67,46 +71,49 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr class="boon-400">
-                                <td class="boon-700" style="color: #27ae60">
-                                    @string.Format("{0:HH:mm dd/MM/yyy}", item.Checkin)
+                        <tr class="boon-400">
+                            <td class="boon-700" style="color: #27ae60">
+                                @string.Format("{0:HH:mm dd/MM/yyy}", item.Checkin)
+                            </td>
+                            @if (item.Checkout == null)
+                            {
+                                <td style="color: red" class="boon-700">
+                                    ຍັງບໍ່ໄດ້ລົງຊື່ອອກ
                                 </td>
-                                @if (item.Checkout == null)
-                                {
-                                    <td style="color: red" class="boon-700">
-                                        ຍັງບໍ່ໄດ້ລົງຊື່ອອກ
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td class="boon-700" style="color: #2980b9">
-                                        @string.Format("{0:HH:mm dd/MM/yyy}", item.Checkout)
-                                    </td>
-                                }
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Person.FullName)
+                            }
+                            else
+                            {
+                                <td class="boon-700" style="color: #2980b9">
+                                    @string.Format("{0:HH:mm dd/MM/yyy}", item.Checkout)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Person.PhoneNumberID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Purpose)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Department.Department1)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Device)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Comment)
-                                </td>
-                                <td>
-                                    <a href="@Url.Action("Edit", "CheckInCheckOut", new { id=item.ID })" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> &nbsp; ແກ້ໄຂ</a>
+                            }
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Person.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Person.PhoneNumberID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Person.EmployeeID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Purpose)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Department.Department1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Device)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Comment)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", "CheckInCheckOut", new { id=item.ID })" class="btn btn-primary btn-xs"><i class="fas fa-edit"></i> &nbsp; ແກ້ໄຂ</a>
 
-                                    <a href="@Url.Action("Delete", "CheckInCheckOut", new { id=item.ID })" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> &nbsp; ລຶບ</a>
-                                </td>
-                            </tr>
+                                <a href="@Url.Action("Delete", "CheckInCheckOut", new { id=item.ID })" class="btn btn-danger btn-xs"><i class="fas fa-trash"></i> &nbsp; ລຶບ</a>
+                            </td>
+                        </tr>
                         }
                     </tbody>
 

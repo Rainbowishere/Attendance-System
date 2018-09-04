@@ -12,6 +12,7 @@ using ClosedXML.Excel;
 
 namespace Attendance_System.Controllers
 {
+    //[Authorize]
     public class CheckInCheckOutController : Controller
     {
         private AttendanceDbContext db = new AttendanceDbContext();
@@ -20,14 +21,14 @@ namespace Attendance_System.Controllers
         // GET: CheckInCheckOut
         public async Task<ActionResult> Index(string sortOrder)
         {
-            ViewBag.CheckInParm = String.IsNullOrEmpty(sortOrder) ? "checkin_desc" : "";
-            ViewBag.CheckOutSortParm = sortOrder == "CheckOut" ? "checkout_desc" : "CheckOut";
-            ViewBag.NameSortParm = sortOrder == "Name" ? "checkout_desc" : "CheckOut";
+            //ViewBag.CheckInParm = String.IsNullOrEmpty(sortOrder) ? "checkin_desc" : "";
+            //ViewBag.CheckOutSortParm = sortOrder == "CheckOut" ? "checkout_desc" : "CheckOut";
+            //ViewBag.NameSortParm = sortOrder == "Name" ? "checkout_desc" : "CheckOut";
 
-            var checkinCheckouts = from c in db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department)
-                                   select c;
+            //var checkinCheckouts = from c in db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department)
+            //                       select c;
 
-            //var checkinCheckouts = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).OrderByDescending(c => c.Checkin);
+            var checkinCheckouts = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).OrderByDescending(c => c.Checkin);
 
             //switch (sortOrder)
             //{
@@ -155,7 +156,10 @@ namespace Attendance_System.Controllers
         // GET: CheckInCheckOut
         public async Task<ActionResult> Reports()
         {
-            var checkinCheckouts = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).OrderByDescending(c => c.Checkin);
+            var checkinCheckouts = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).OrderByDescending(c => c.Checkin).Where(c => c.Person.PhoneNumberID == null);
+
+            ViewBag.SearchStartDate = $"{DateTime.Now.ToShortDateString()} 00:00";
+            ViewBag.SearchEndDate = $"{DateTime.Now.ToShortDateString()} 23:59";
             return View(await checkinCheckouts.ToListAsync());
         }
 
@@ -173,16 +177,61 @@ namespace Attendance_System.Controllers
         // POST: CheckInCheckOut/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Reports(DateTime startdate, DateTime enddate)
+        public ActionResult Reports(DateTime startdate, DateTime enddate, bool? isNotSignOut, string people, string search)
         {
 
-            ViewBag.SearchStartDate = startdate;
-            ViewBag.SearchEndDate = enddate;
+            ViewBag.SearchStartDate = string.Format("{0:dd/MM/yyy HH:mm}", startdate);
+            ViewBag.SearchEndDate = string.Format("{0:dd/MM/yyy HH:mm}", enddate);
+            ViewBag.SearchString = search;
 
-            var checkinCheckout =  db.CheckinCheckouts.Where(c => c.Checkin >= startdate && c.Checkout <= enddate).ToList();
+           
+            if (isNotSignOut != true)
+            {
+                if (people == "employee")
+                {
+                    var checkinCheckout = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).Where(c => c.Checkin >= startdate && c.Checkin <= enddate && (c.Person.FullName.Contains(search) || c.Person.PhoneNumberID.Contains(search) || c.Purpose.Contains(search) || c.Person.EmployeeID.Contains(search) || c.Device.Contains(search)  || c.Comment.Contains(search)) && c.Person.EmployeeID != null);
+                    return View(checkinCheckout.ToList());
+                }
+                else if (people == "other")
+                {
+                    var checkinCheckout = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).Where(c => c.Checkin >= startdate && c.Checkin <= enddate && (c.Person.FullName.Contains(search) || c.Person.PhoneNumberID.Contains(search) || c.Purpose.Contains(search) || c.Person.EmployeeID.Contains(search) || c.Device.Contains(search)  || c.Comment.Contains(search)) && c.Person.EmployeeID == null);
+                    return View(checkinCheckout.ToList());
+                }
+                else
+                {
+                    var checkinCheckout = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).Where(c => c.Checkin >= startdate && c.Checkin <= enddate && (c.Person.FullName.Contains(search) || c.Person.PhoneNumberID.Contains(search) || c.Purpose.Contains(search) || c.Person.EmployeeID.Contains(search) || c.Device.Contains(search)  || c.Comment.Contains(search)));
+                    return View(checkinCheckout.ToList());
+                }
+            }
+            else if (isNotSignOut == true)
+            {
+                if (people == "employee")
+                {
+                    var checkinCheckout = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).Where(c => c.Checkin >= startdate && c.Checkin <= enddate && (c.Person.FullName.Contains(search) || c.Person.PhoneNumberID.Contains(search) || c.Purpose.Contains(search) || c.Person.EmployeeID.Contains(search) || c.Device.Contains(search)  || c.Comment.Contains(search)) && c.Checkout == null && c.Person.EmployeeID != null);
+                    return View(checkinCheckout.ToList());
+                }
+                else if (people == "other")
+                {
+                    var checkinCheckout = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).Where(c => c.Checkin >= startdate && c.Checkin <= enddate && (c.Person.FullName.Contains(search) || c.Person.PhoneNumberID.Contains(search) || c.Purpose.Contains(search) || c.Person.EmployeeID.Contains(search) || c.Device.Contains(search)  || c.Comment.Contains(search)) && c.Checkout == null && c.Person.EmployeeID == null);
+                    return View(checkinCheckout.ToList());
+                }
+                else
+                {
+                    var checkinCheckout = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).Where(c => c.Checkin >= startdate && c.Checkin <= enddate && (c.Person.FullName.Contains(search) || c.Person.PhoneNumberID.Contains(search) || c.Purpose.Contains(search) || c.Person.EmployeeID.Contains(search) || c.Device.Contains(search)  || c.Comment.Contains(search)) && c.Checkout == null);
+                    return View(checkinCheckout.ToList());
+                }
+                
+            }
+            else
+            {
+                var checkinCheckout = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).Where(c => c.Checkin >= startdate && c.Checkin <= enddate && (c.Person.FullName.Contains(search) || c.Person.PhoneNumberID.Contains(search) || c.Purpose.Contains(search) || c.Person.EmployeeID.Contains(search) || c.Device.Contains(search)  || c.Comment.Contains(search)));
+                return View(checkinCheckout.ToList());
+            }
+          
 
 
-            return View(checkinCheckout.ToList());
+
+            
         }
 
         protected override void Dispose(bool disposing)

@@ -26,14 +26,18 @@ namespace Attendance_System
                       "~/Scripts/datatables.js",
                       "~/Scripts/js/all.js",
                       "~/Scripts/qrcode.min.js",
-                      "~/Scripts/jquery.table2excel.js"));
+                      "~/Scripts/jquery.table2excel.js",
+                      "~/Scripts/moment.js",
+                      "~/Scripts/locale/th.js",
+                      "~/Scripts/bootstrap-datetimepicker.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/lumen.bootstrap.min.css",
                       "~/Content/css/all.css",
                       "~/Content/site.css",
                       "~/Content/boon-all.css",
-                      "~/Content/datatables.css"
+                      "~/Content/datatables.css",
+                      "~/Content/bootstrap-datetimepicker.css"
                       ));
         }
     }
