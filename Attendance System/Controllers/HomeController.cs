@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Attendance_System.Controllers
 {
+    
     public class HomeController : Controller
     {
         public ActionResult Index()
