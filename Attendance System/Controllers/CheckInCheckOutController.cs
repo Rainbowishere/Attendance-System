@@ -185,6 +185,8 @@ namespace Attendance_System.Controllers
             ViewBag.SearchStartDate = string.Format("{0:dd/MM/yyy HH:mm}", startdate);
             ViewBag.SearchEndDate = string.Format("{0:dd/MM/yyy HH:mm}", enddate);
             ViewBag.SearchString = search;
+            ViewBag.NoSignOut = isNotSignOut;
+            ViewBag.Person = people;
 
            
             if (isNotSignOut != true)

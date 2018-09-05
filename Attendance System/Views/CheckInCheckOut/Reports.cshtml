@@ -27,52 +27,84 @@
 
     <div class="panel panel-body">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12 text-center">
                 @using (Html.BeginForm("Reports", "CheckInCheckOut", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
 
                     @*<div class="container">
-                <div class='col-md-5'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker6'>
-                            <input type='text' value="@DateTime.Now.ToShortDateString() 00:00" name="startdate" class="form-control"/>
-                            <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
+                    <div class='col-md-5'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker6'>
+                                <input type='text' value="@DateTime.Now.ToShortDateString() 00:00" name="startdate" class="form-control"/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class='col-md-5'>
-                    <div class="form-group">
-                        <div class='input-group date' id='datetimepicker7'>
-                            <input type='text' value="@DateTime.Now.ToShortDateString() 00:00" name="enddate" class="form-control" />
-                            <span class="input-group-addon btn btn-default">
-                                <span class="fas fa-calendar"></span>
-                            </span>
+                    <div class='col-md-5'>
+                        <div class="form-group">
+                            <div class='input-group date' id='datetimepicker7'>
+                                <input type='text' value="@DateTime.Now.ToShortDateString() 00:00" name="enddate" class="form-control" />
+                                <span class="input-group-addon btn btn-default">
+                                    <span class="fas fa-calendar"></span>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>*@
+                </div>*@
 
-                
+
 
                     <div class="pull-right">
                         <div class="form-inline">
 
-                            <label>
-                                <input type="checkbox" id="isNotSignOut" name="isNotSignOut" value="true">
-                                ຍັງບໍ່ໄດ້ລົງຊື່ອອກ
-                            </label>
+                            @if (ViewBag.NoSignOut == true)
+                            {
+                                <label>
+                                    <input type="checkbox" id="isNotSignOut" name="isNotSignOut" value="true" checked>
+                                    ສະເພາະຍັງບໍ່ໄດ້ລົງຊື່ອອກ
+                                </label>
+                            }
+                            else
+                            {
+                                <label>
+                                    <input type="checkbox" id="isNotSignOut" name="isNotSignOut" value="true">
+                                    ສະເພາະຍັງບໍ່ໄດ້ລົງຊື່ອອກ
+                                </label>
+                            }
+
 
                             <span> &nbsp; </span>
 
-                            <select class="form-control" name="people">
-                                <option value="all">ທັງຫມົດ</option>
-                                <option value="employee">ພະນັກງານ</option>
-                                <option value="other">ບຸກຄົນພາຍນອກ</option>
+                            @if (ViewBag.Person == "employee")
+                            {
+                                <select class="form-control" name="people">
+                                    <option value="all">ທັງຫມົດ</option>
+                                    <option value="employee" selected>ພະນັກງານ</option>
+                                    <option value="other">ບຸກຄົນພາຍນອກ</option>
 
-                            </select>
+                                </select>
+                            }
+                            else if (ViewBag.Person == "other")
+                            {
+                                <select class="form-control" name="people">
+                                    <option value="all">ທັງຫມົດ</option>
+                                    <option value="employee" selected>ພະນັກງານ</option>
+                                    <option value="other" selected>ບຸກຄົນພາຍນອກ</option>
+
+                                </select>
+                            }
+                            else
+                            {
+                                <select class="form-control" name="people">
+                                    <option value="all" selected>ທັງຫມົດ</option>
+                                    <option value="employee" selected>ພະນັກງານ</option>
+                                    <option value="other">ບຸກຄົນພາຍນອກ</option>
+
+                                </select>
+                            }
 
                             <span> &nbsp; </span>
 
@@ -122,96 +154,106 @@
                 }
             </div>
 
-           
 
+            @if (Model.ToList().Count == 0)
+            {
+                <div class="col-xs-12 text-center" style="margin-top: 16px">
+                    ບໍ່ມີຂໍ້ມູນທີ່ທ່ານຄົ້ນຫາ
+                </div>
+            }
+            else
+            {
+                <div class="col-xs-12" style="margin-top: 16px">
+                    @*<div class="row" style="margin-bottom: 12px"><div class="text-center">ຜົນການຄົ້ນຫາຂອງການລົງຊື່ເຂົ້າແຕ່ເວລາ @string.Format("{0:HH:mm dd/MM/yyy}", ViewBag.SearchStartDate) ເຖີງ @string.Format("{0:HH:mm dd/MM/yyy}", ViewBag.SearchEndDate)</div></div>*@
 
-            <div class="col-xs-12" style="margin-top: 16px">
-                @*<div class="row" style="margin-bottom: 12px"><div class="text-center">ຜົນການຄົ້ນຫາຂອງການລົງຊື່ເຂົ້າແຕ່ເວລາ @string.Format("{0:HH:mm dd/MM/yyy}", ViewBag.SearchStartDate) ເຖີງ @string.Format("{0:HH:mm dd/MM/yyy}", ViewBag.SearchEndDate)</div></div>*@
+                    <table class="table table-striped table-hover display" id="myTable">
+                        <thead>
+                            <tr style="background-color: #eb001f; color: whitesmoke">
+                                <th>
+                                    <i class="fas fa-clock"></i> ເວລາເຂົ້າ
+                                </th>
+                                <th>
+                                    <i class="fas fa-clock"></i> ເວລາອອກ
+                                </th>
+                                <th>
+                                    <i class="fas fa-user"></i> ຊື່ ແລະ ນາມສະກຸນ
+                                </th>
+                                <th>
 
-                <table class="table table-striped table-hover display" id="myTable">
-                    <thead>
-                        <tr style="background-color: #eb001f; color: whitesmoke">
-                            <th>
-                                <i class="fas fa-clock"></i> ເວລາເຂົ້າ
-                            </th>
-                            <th>
-                                <i class="fas fa-clock"></i> ເວລາອອກ
-                            </th>
-                            <th>
-                                <i class="fas fa-user"></i> ຊື່ ແລະ ນາມສະກຸນ
-                            </th>
-                            <th>
-
-                                <i class="fas fa-phone"></i> ເບີໂທ
-                            </th>
-                            <th>
-                                <i class="fas fa-id-badge"></i> ລະຫັດພະນັກງານ
-                            </th>
-                            <th>
-                                <i class="fas fa-question-circle"></i> ຈຸດປະສົງ
-                            </th>
-                            <th>
-                                <i class="fas fa-building"></i> ຜະແຫນກ
-                            </th>
-                            <th>
-                                <i class="fas fa-laptop"></i> ອຸປະກອນທີ່ນຳເຂົ້າມາ
-                            </th>
-                            <th>
-                                <i class="fas fa-comment"></i> ຫມາຍເຫດ
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr class="boon-400">
-                                <td class="boon-700" style="color: #27ae60">
-                                    @string.Format("{0:HH:mm dd/MM/yyy}", item.Checkin)
-                                </td>
-                                @if (item.Checkout == null)
-                                {
-                                    <td style="color: red" class="boon-700">
-                                        ຍັງບໍ່ໄດ້ລົງຊື່ອອກ
-                                    </td>
-                                }
-                                else
-                                {
-                                    <td class="boon-700" style="color: #2980b9">
-                                        @string.Format("{0:HH:mm dd/MM/yyy}", item.Checkout)
-                                    </td>
-                                }
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Person.FullName)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Person.PhoneNumberID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Person.EmployeeID)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Purpose)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Department.Department1)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Device)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Comment)
-                                </td>
+                                    <i class="fas fa-phone"></i> ເບີໂທ
+                                </th>
+                                <th>
+                                    <i class="fas fa-id-badge"></i> ລະຫັດພະນັກງານ
+                                </th>
+                                <th>
+                                    <i class="fas fa-question-circle"></i> ຈຸດປະສົງ
+                                </th>
+                                <th>
+                                    <i class="fas fa-building"></i> ຜະແຫນກ
+                                </th>
+                                <th>
+                                    <i class="fas fa-laptop"></i> ອຸປະກອນທີ່ນຳເຂົ້າມາ
+                                </th>
+                                <th>
+                                    <i class="fas fa-comment"></i> ຫມາຍເຫດ
+                                </th>
                             </tr>
-                        }
-                    </tbody>
+                        </thead>
 
-                </table>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="boon-400">
+                                    <td class="boon-700" style="color: #27ae60">
+                                        @string.Format("{0:HH:mm dd/MM/yyy}", item.Checkin)
+                                    </td>
+                                    @if (item.Checkout == null)
+                                    {
+                                        <td style="color: red" class="boon-700">
+                                            ຍັງບໍ່ໄດ້ລົງຊື່ອອກ
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="boon-700" style="color: #2980b9">
+                                            @string.Format("{0:HH:mm dd/MM/yyy}", item.Checkout)
+                                        </td>
+                                    }
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Person.FullName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Person.PhoneNumberID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Person.EmployeeID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Purpose)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Department.Department1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Device)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Comment)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
 
-                <button onclick="exportToExcel()" class="btn btn-success">
-                    <i class="fa fa-download"></i> &nbsp; ດາວໂຫລດເປັນຟາຍ Excel
-                </button>
-            </div>
+                    </table>
+
+                    <div class="pull-right">
+                        <button onclick="exportToExcel()" class="btn btn-success">
+                            <i class="fa fa-download"></i> &nbsp; ດາວໂຫລດເປັນຟາຍ Excel
+                        </button>
+                    </div>
+                </div>
+            }
+
         </div>
     </div>
 </div>
@@ -223,7 +265,6 @@
     $(document).ready(function () {
         //$('#myTable').DataTable();
 
-       
 
     });
 

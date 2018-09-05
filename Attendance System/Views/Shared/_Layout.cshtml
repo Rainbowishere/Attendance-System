@@ -137,16 +137,16 @@
                 </div>
             </div>
         </div>*@
-    <div class="wrapper">
+    <div class="wrapper" style="margin-bottom: 0">
         <!-- Sidebar Holder -->
-        <nav id="sidebar">
+        <nav id="sidebar" style="margin-bottom: 0; padding-bottom: 0; padding-bottom: 0">
             <div class="sidebar-header" style="padding: 4px 16px">
                 <h3 style="color: white">ລະບົບຈັດການຄົນເຂົ້າອອກ</h3>
             </div>
-            <ul class="list-unstyled components" style="padding-top: 0">
+            <ul class="list-unstyled components" style="padding-top: 0; padding-bottom: 0">
 
                 <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="sidebar-link"> <i class="fa fa-user"></i> ຄົນເຂົ້າ-ຄົນອອກ</a>
+                    <a href="@Url.Action("Index", "CheckInCheckOut")"  aria-expanded="false" class="sidebar-link"> <i class="fa fa-user"></i>&nbsp; ຄົນເຂົ້າ-ຄົນອອກ</a>
                     @*<a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-link">ຄົນເຂົ້າ-ຄົນອອກ</a>*@
                     @*<ul class="collapse list-unstyled" id="homeSubmenu">
                             <li>
@@ -162,7 +162,7 @@
                 </li>
                 <li>
                     @*<a href="#chekinchekouttime" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-link">ເວລາເຂົ້າ-ອອກ</a>*@
-                    <a href="#chekinchekouttime" data-toggle="collapse" aria-expanded="false" class="sidebar-link"> <i class="fa fa-user"></i> ເວລາເຂົ້າ-ອອກ</a>
+                    <a href="@Url.Action("Reports", "CheckInCheckOut")"  aria-expanded="false" class="sidebar-link"> <i class="fa fa-table"></i> &nbsp; ລາຍງານ</a>
                     @*<ul class="collapse list-unstyled" id="chekinchekouttime">
                             <li>
                                 <a href="#">ເວລາເຂົ້າ</a>
@@ -188,7 +188,7 @@
 
         </nav>
         <!-- Page Content Holder -->
-        <div id="content" class="container">
+        <div id="content" class="" style="padding-bottom: 0; margin-bottom: 0">
             @RenderBody()
         </div>
 
