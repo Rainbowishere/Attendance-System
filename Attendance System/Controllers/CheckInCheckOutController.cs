@@ -157,8 +157,10 @@ namespace Attendance_System.Controllers
         public async Task<ActionResult> Reports()
         {
             var checkinCheckouts = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).OrderByDescending(c => c.Checkin).Where(c => c.Person.PhoneNumberID == null);
-
-            ViewBag.SearchStartDate = $"{DateTime.Now.ToShortDateString()} 00:00";
+            var datestart = "00:00";
+            var dateend = "23:59";
+            ViewBag.SearchStartDate = $"{DateTime.Now.ToShortDateString()} {string.Format("0:HH:mm", datestart)}";
+            ViewBag.SearchStartDate = $"{DateTime.Now.ToShortDateString()} {string.Format("0:HH:mm", dateend)}";
             ViewBag.SearchEndDate = $"{DateTime.Now.ToShortDateString()} 23:59";
             return View(await checkinCheckouts.ToListAsync());
         }
