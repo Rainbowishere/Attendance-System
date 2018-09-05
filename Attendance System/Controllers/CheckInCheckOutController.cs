@@ -12,7 +12,7 @@ using ClosedXML.Excel;
 
 namespace Attendance_System.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class CheckInCheckOutController : Controller
     {
         private AttendanceDbContext db = new AttendanceDbContext();
@@ -227,10 +227,6 @@ namespace Attendance_System.Controllers
                 var checkinCheckout = db.CheckinCheckouts.Include(c => c.Person).Include(c => c.Department).Where(c => c.Checkin >= startdate && c.Checkin <= enddate && (c.Person.FullName.Contains(search) || c.Person.PhoneNumberID.Contains(search) || c.Purpose.Contains(search) || c.Person.EmployeeID.Contains(search) || c.Device.Contains(search)  || c.Comment.Contains(search)));
                 return View(checkinCheckout.ToList());
             }
-          
-
-
-
             
         }
 

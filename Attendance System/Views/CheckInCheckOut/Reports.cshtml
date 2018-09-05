@@ -65,12 +65,16 @@
                                 ຍັງບໍ່ໄດ້ລົງຊື່ອອກ
                             </label>
 
+                            <span> &nbsp; </span>
+
                             <select class="form-control" name="people">
                                 <option value="all">ທັງຫມົດ</option>
                                 <option value="employee">ພະນັກງານ</option>
                                 <option value="other">ບຸກຄົນພາຍນອກ</option>
-                                
+
                             </select>
+
+                            <span> &nbsp; </span>
 
                             <label class="control-label">ເລີ່ມ &nbsp;</label>
                             <div class="form-group">
@@ -88,8 +92,8 @@
                             <div class="form-group">
                                 <div class='input-group date' id='datetimepicker7'>
                                     <input type='text' value="@ViewBag.SearchEndDate" name="enddate" class="form-control" />
-                                    <span class="input-group-addon btn btn-default">
-                                        <span class="fas fa-calendar"></span>
+                                    <span class="input-group-addon">
+                                        <span class="fas fa-calendar-alt"></span>
                                     </span>
                                 </div>
                             </div>
@@ -122,7 +126,7 @@
 
 
             <div class="col-xs-12" style="margin-top: 16px">
-                <div class="row" style="margin-bottom: 12px"><div class="text-center">ຜົນການຄົ້ນຫາຂອງການລົງຊື່ເຂົ້າແຕ່ເວລາ @string.Format("{0:HH:mm dd/MM/yyy}", ViewBag.SearchStartDate) ເຖີງ @string.Format("{0:HH:mm dd/MM/yyy}", ViewBag.SearchEndDate)</div></div>
+                @*<div class="row" style="margin-bottom: 12px"><div class="text-center">ຜົນການຄົ້ນຫາຂອງການລົງຊື່ເຂົ້າແຕ່ເວລາ @string.Format("{0:HH:mm dd/MM/yyy}", ViewBag.SearchStartDate) ເຖີງ @string.Format("{0:HH:mm dd/MM/yyy}", ViewBag.SearchEndDate)</div></div>*@
 
                 <table class="table table-striped table-hover display" id="myTable">
                     <thead>
@@ -205,7 +209,7 @@
                 </table>
 
                 <button onclick="exportToExcel()" class="btn btn-success">
-                    <i class="fa fa-save"></i> &nbsp; ດາວໂຫລດເປັນຟາຍ Excel
+                    <i class="fa fa-download"></i> &nbsp; ດາວໂຫລດເປັນຟາຍ Excel
                 </button>
             </div>
         </div>
@@ -251,9 +255,6 @@
 
 
     <script>
-
-
-        
 
         function exportToExcel() {
             //$("#myTable").table2excel({
