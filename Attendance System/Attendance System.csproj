@@ -251,9 +251,21 @@
     <Content Include="Content\css\svg-with-js.min.css" />
     <Content Include="Content\css\v4-shims.css" />
     <Content Include="Content\css\v4-shims.min.css" />
+    <Content Include="Content\css\webfonts\fa-brands-400.eot" />
     <Content Include="Content\css\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\css\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\css\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\css\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\css\webfonts\fa-regular-400.eot" />
     <Content Include="Content\css\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\css\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\css\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\css\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\css\webfonts\fa-solid-900.eot" />
     <Content Include="Content\css\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\css\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\css\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\css\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\datatables.css" />
     <Content Include="Content\Icon\android-chrome-192x192.png" />
     <Content Include="Content\Icon\android-chrome-512x512.png" />
@@ -264,20 +276,21 @@
     <Content Include="Content\Icon\favicon.ico" />
     <Content Include="Content\Icon\mstile-150x150.png" />
     <Content Include="Content\Icon\safari-pinned-tab.svg" />
+    <Content Include="Content\Icon\site.webmanifest" />
     <Content Include="Content\JParticles\css\style.css" />
     <Content Include="Content\JParticles\js\event.js" />
     <Content Include="Content\JParticles\js\jparticles.js" />
     <Content Include="Content\JParticles\js\particle.js" />
     <Content Include="Content\JParticles\js\require.js" />
-    <Content Include="Content\style.css" />
     <Content Include="Content\loung.png" />
     <Content Include="Content\lumen.bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\style.css" />
     <Content Include="Content\style5.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\otf\OFL.txt" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Models\AttendanceDbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AttendanceDbModel.edmx</DependentUpon>
@@ -291,19 +304,6 @@
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\css\webfonts\fa-brands-400.eot" />
-    <Content Include="Content\css\webfonts\fa-brands-400.ttf" />
-    <Content Include="Content\css\webfonts\fa-brands-400.woff" />
-    <Content Include="Content\css\webfonts\fa-brands-400.woff2" />
-    <Content Include="Content\css\webfonts\fa-regular-400.eot" />
-    <Content Include="Content\css\webfonts\fa-regular-400.ttf" />
-    <Content Include="Content\css\webfonts\fa-regular-400.woff" />
-    <Content Include="Content\css\webfonts\fa-regular-400.woff2" />
-    <Content Include="Content\css\webfonts\fa-solid-900.eot" />
-    <Content Include="Content\css\webfonts\fa-solid-900.ttf" />
-    <Content Include="Content\css\webfonts\fa-solid-900.woff" />
-    <Content Include="Content\css\webfonts\fa-solid-900.woff2" />
-    <Content Include="Content\Icon\site.webmanifest" />
     <Content Include="particles.json" />
     <EntityDeploy Include="Models\AttendanceDbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -326,6 +326,7 @@
     <Content Include="fonts\otf\Boon-Regular.otf" />
     <Content Include="fonts\otf\Boon-SemiBold.otf" />
     <Content Include="fonts\otf\Boon-SemiBoldItalic.otf" />
+    <None Include="Properties\PublishProfiles\test.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\datatables.js" />
     <Content Include="Scripts\html2canvas.js" />
